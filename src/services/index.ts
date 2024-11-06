@@ -1,4 +1,5 @@
 import request from "./request";
+<<<<<<< HEAD
 
 import type { bannersRes, recommendRes } from "./type";
 
@@ -44,4 +45,16 @@ export const touristLogin = () => {
     return request({
         url: '/register/anonimous'
     })
+=======
+import type { bannersRes, recommendRes } from './type'
+
+// 获取轮播图
+export const bannerApi = () => {
+    return request<bannersRes>({ url: '/banner' })
+}
+
+// 获取推荐歌单
+export const recommendSongsApi = () => {
+    return request<recommendRes>({ url: '/recommend/songs' })
+>>>>>>> yds
 }

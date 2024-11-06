@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 // banner 轮播图接口
+=======
+>>>>>>> yds
 export interface bannersItem {
     imageUrl: string;
     targetId: number
 }
+<<<<<<< HEAD
+=======
+//轮播图
+>>>>>>> yds
 export interface bannersRes {
     banners: bannersItem[];
     code: number;
@@ -28,12 +35,19 @@ export interface recommendReasonsItem{
     reasonId:string;
 }
 export interface recommendRes{
+<<<<<<< HEAD
     code: number;
     values: {
+=======
+    // data: any;
+    code: number;
+    data: {
+>>>>>>> yds
         dailySongs: recommendItem[];
         recommendReasons: recommendReasonsItem[];
     }
 }
+<<<<<<< HEAD
 
 
 // 热搜列表
@@ -54,3 +68,5 @@ export interface hotListRes {
 
 
 
+=======
+>>>>>>> yds
