@@ -1,10 +1,31 @@
 <script setup lang='ts'>
 import { ref} from 'vue'
+import { getSongsApi } from '../../services/index'
+import type { bannersItem } from '../../services/type'
 
+const songs = ref<bannersItem[]>([])
+const getSongList = async () => {
+    try{
+      const res = await getSongsApi()
+      songs.value = res.data.banners
+
+    }catch(e){
+      console.log(e)
+    }
+}
+
+getSongList()
 </script>
 
 <template>
-  <div class="mine">我的</div>
+  <div class="mine">
+    <swiper>
+      <swiper-item v-for="(song, index) in songs" :key="song.targetId">
+        <image mode="widthFix" :src="song.imageUrl" />
+      </swiper-item>
+    </swiper>
+
+  </div>
 </template>
 
 <style lang="scss" scoped>
