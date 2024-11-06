@@ -21,8 +21,12 @@ onMounted(() => {
 const banners = ref<bannersItem[]>([])
 getBannerApi().then(res => {
   banners.value = res.data.banners
-  console.log(res.data.banners)
+  // console.log(res.data.banners)
 })
+
+
+
+
 </script>
 <template>
 

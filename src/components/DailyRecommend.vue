@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { recommendSongsApi } from '../services/index'
-import type { recommendRes, alItem } from '../services/type'
-const recommendSongs = ref<recommendRes[]>([])
+import type { recommendItem, alItem } from '../services/type'
+const recommendSongs = ref<recommendItem[]>([])
 recommendSongsApi().then(res => {
-    console.log(res.data.data.dailySongs)
     recommendSongs.value = res.data.data.dailySongs
+
+    console.log(recommendSongs)
 })
 </script>
 
@@ -13,7 +14,7 @@ recommendSongsApi().then(res => {
     <view class="daily-recommend">
         <view class="recommend-title">
             <text>💕每日推荐</text>
-            <image :src="recommendSongs[0].al.picUrl" alt="" />  
+            <image :src="recommendSongs[0]?.al.picUrl" alt="" />  
         </view>
         <view class="heart-pattern">
             <text>❤️心动模式</text>
