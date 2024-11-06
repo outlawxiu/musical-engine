@@ -1,12 +1,16 @@
-<script setup lang='ts'>
-import { ref} from 'vue'
+<template>
+我的
+</template>
+
+<script setup lang="ts">
+import { reactive, ref } from "vue" 
+import { RouterLink, RouterView } from "vue-router"
+import { useRoute,useRouter } from "vue-router"
+const route = useRoute()
+const router = useRouter()
 
 </script>
 
-<template>
-  <div class="mine">我的</div>
-</template>
-
 <style lang="scss" scoped>
-    
+
 </style>

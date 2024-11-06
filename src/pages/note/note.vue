@@ -1,5 +1,5 @@
 <template>
-登录
+笔记
 </template>
 
 <script setup lang="ts">

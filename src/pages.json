@@ -1,44 +1,54 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "网易云"
-			}
+			"path": "pages/recommend/recommend"
 		},
 		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录"
-			}
-		},{
-			"path": "pages/mine/mine",
-			"style": {
-				"navigationBarTitleText": "我的"
-			}
+			"path": "pages/find/find"
+		},
+		{
+			"path": "pages/mine/mine"
+		},
+		{
+			"path": "pages/roam/roam"
+		},
+		{
+			"path": "pages/note/note"
+		},
+		{
+			"path": "pages/homepage/homepage"
 		}
 	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "网易云音乐",
-		"navigationBarBackgroundColor": "#87CEEB",
-		"backgroundColor": "#F8F8F8"
-	},
 	"tabBar":{
-		"color": "#777",
-		"selectedColor": "#ff0000",
-		"list": [
+		"selectedColor": "#FF0000",
+		"borderStyle":"black",
+		"list":[
 			{
-				"pagePath": "pages/index/index",
-				"text": "首页"
+				"pagePath": "pages/recommend/recommend",
+				"text" : "推荐"
+			},
+			{
+				"pagePath": "pages/find/find",
+				"text" : "发现"
+			},
+			{
+				"pagePath": "pages/roam/roam",
+				"text" : "漫游"
+			},
+			{
+				"pagePath": "pages/note/note",
+				"text" : "笔记"
 			},
 			{
 				"pagePath": "pages/mine/mine",
-				"text": "我的"
-			},{
-				"pagePath": "pages/login/login",
-				"text": "登录"
+				"text" : "我的"
 			}
 		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "网易云音乐",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
 	}
 }

@@ -1,5 +1,5 @@
 <template>
-登录
+推荐
 </template>
 
 <script setup lang="ts">

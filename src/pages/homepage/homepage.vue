@@ -1,5 +1,5 @@
 <template>
-登录
+首页
 </template>
 
 <script setup lang="ts">

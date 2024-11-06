@@ -1,5 +1,5 @@
 <template>
-登录
+漫游
 </template>
 
 <script setup lang="ts">

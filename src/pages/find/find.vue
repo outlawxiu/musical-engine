@@ -1,5 +1,5 @@
 <template>
-登录
+发现
 </template>
 
 <script setup lang="ts">
