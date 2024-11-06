@@ -5,7 +5,7 @@ import { ref} from 'vue'
 
 <template>
     <div>
-        <h1>Find发现</h1>
+        动态页面    
     </div>
 </template>
 

@@ -1,15 +1,14 @@
-<template>
+<script setup lang='ts'>
 
-</template>
-
-<script setup lang="ts">
-import { reactive, ref } from "vue" 
-import { RouterLink, RouterView } from "vue-router"
-import { useRoute,useRouter } from "vue-router"
-const route = useRoute()
-const router = useRouter()
 
 </script>
+
+<template>
+    <div>
+        <h1>Search</h1>
+
+    </div>
+</template>
 
 <style lang="scss" scoped>
 

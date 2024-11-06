@@ -1,15 +1,13 @@
-<template>
-漫游
-</template>
-
-<script setup lang="ts">
-import { reactive, ref } from "vue" 
-import { RouterLink, RouterView } from "vue-router"
-import { useRoute,useRouter } from "vue-router"
-const route = useRoute()
-const router = useRouter()
+<script setup lang='ts'>
+import { ref} from 'vue'
 
 </script>
+
+<template>
+    <div>
+        <h1>Roam漫游</h1>
+    </div>
+</template>
 
 <style lang="scss" scoped>
 
