@@ -1,16 +1,10 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
+    推荐也
   </view>
 </template>
 
 <script setup lang="ts">
-import Child from '../../components/index.vue'
-
-
 
 
 import { ref } from 'vue'

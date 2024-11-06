@@ -1,16 +1,15 @@
 <template>
-我的
+  我的
+  <view @click="toLogin">去登陆</view>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue" 
-import { RouterLink, RouterView } from "vue-router"
-import { useRoute,useRouter } from "vue-router"
-const route = useRoute()
-const router = useRouter()
-
+import { reactive, ref } from "vue";
+const toLogin = () => {
+    uni.navigateTo({
+        url : "/pages/login/login"
+    })
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
