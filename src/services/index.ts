@@ -34,3 +34,9 @@ export const searchApi = (keywords: string) => {
         }
     })
 }
+//游客登陆 touristLogin
+export const touristLogin = () => {
+    return request({
+        url: '/register/anonimous'
+    })
+}

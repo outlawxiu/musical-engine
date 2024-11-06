@@ -1,9 +1,8 @@
 <template>
   <div class="whole">
-
     <div class="app">
       <view>
-        <img src="../../static/music.png" alt="" />
+        <img src="../../static/music.png" />
       </view>
     </div>
     <div class="login">
@@ -18,49 +17,53 @@
         />
         <icon type="clear" size="26" v-if="showClearIcon" @click="clearIcon" />
       </view>
-      <button class="quickLogin" @click="login">一键登录</button>
+      <button class="quickLogin" @click="login">验证码登录</button>
       <view class="agreement">
-        <checkbox-group @change="canlogin =!canlogin">
-          <label class="label"><checkbox class="checkbox" :checked="canlogin"/>我已阅读 </label>
+        <checkbox-group @change="canlogin = !canlogin">
+          <label class="label"
+            ><checkbox class="checkbox" :checked="canlogin" />我已阅读
+          </label>
         </checkbox-group>
       </view>
-      
     </div>
-    <view class="tourist">立即体验</view>
-    <view class="dialog" @click.self="showDialog =!showDialog" v-if="showDialog">
-        <view class="btns">
-            <view>
-                <text>同意协议后登录</text>
-            </view>
-            <view class="agree">
-                <button class="button noAgree">不同意</button>
-                <button  class="button agree" @click="changeCanlog">同意并继续</button>
-            </view>
-
+    <view class="tourist" @click="touristLoginI">立即体验</view>
+    <view
+      class="dialog"
+      @click.self="showDialog = !showDialog"
+      v-if="showDialog"
+    >
+      <view class="btns">
+        <view>
+          <text>同意协议后登录</text>
         </view>
+        <view class="agree">
+          <button class="button noAgree">不同意</button>
+          <button class="button agree" @click="changeCanlog">同意并继续</button>
+        </view>
+      </view>
     </view>
   </div>
-
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
+import { touristLogin } from "../../services/index";
 const showClearIcon = ref(true);
 const telNumber = ref("");
-const canlogin = ref(false)
-const showDialog = ref(false)
+const canlogin = ref(false);
+const showDialog = ref(false);
 const clearIcon = () => {
   telNumber.value = "";
 };
 const login = () => {
-    if (!canlogin.value) {
-        showDialog.value = true
-        return
-    }
-}
+  if (!canlogin.value) {
+    showDialog.value = true;
+    return;
+  }
+};
 const changeCanlog = () => {
-    canlogin.value = true
-}
+  canlogin.value = true;
+};
 watch(
   telNumber,
   () => {
@@ -70,6 +73,31 @@ watch(
     immediate: true,
   }
 );
+const touristLoginI = async () => {
+  if (!canlogin.value) {
+    showDialog.value = true;
+    return;
+  }
+  const back = await touristLogin();
+  if (back.data.code === 200) {
+    const obj = {
+      cookie: back.data.cookie,
+      createTime: back.data.createTime,
+      userId: back.data.userId,
+    };
+    // console.log(obj);
+    // console.log(JSON.stringify(obj));
+    uni.setStorage({
+      key: "userInfo",
+      data: JSON.stringify(obj),
+      success: function () {
+        uni.switchTab({
+          url: "/pages/index/index",
+        });
+      },
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -108,44 +136,44 @@ watch(
   color: white;
   margin-top: 20rpx;
 }
-.agreement{
-    margin-top: 20rpx;
-    font-size: 30rpx;
+.agreement {
+  margin-top: 20rpx;
+  font-size: 30rpx;
 }
-.label{
-    display: flex;
-    align-items: center;
+.label {
+  display: flex;
+  align-items: center;
 }
-.checkbox{
-    transform: scale(0.7);
+.checkbox {
+  transform: scale(0.7);
 }
-.dialog{
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 3;
+.dialog {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 3;
 }
-.btns{
-    position: absolute;
-    bottom: 0;
-    height: 150rpx;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-top-left-radius: 20rpx;
-    border-top-right-radius: 20rpx;
+.btns {
+  position: absolute;
+  bottom: 0;
+  height: 150rpx;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
 }
-.agree{
-    display: flex;
-    .button{
-        flex: 1;
-        background: unset;
-        border: none;
-        outline: none;
-    }
+.agree {
+  display: flex;
+  .button {
+    flex: 1;
+    background: unset;
+    border: none;
+    outline: none;
+  }
 }
 </style>
