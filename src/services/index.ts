@@ -8,6 +8,11 @@ export const getSongsApi = () => {
     return request<bannersRes>({ url: "/banner" });
 }
 
+// 每日推荐
+export const recommendSongsApi = () => {
+    return request({ url: `/recommend/songs` })
+}
+
 
 // 所有榜单
 export const toplistApi = () => {
