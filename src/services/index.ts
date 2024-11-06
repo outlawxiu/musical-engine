@@ -1,6 +1,6 @@
 import request from "./request";
 
-import type { bannersRes } from "./type";
+import type { bannersRes, recommendRes } from "./type";
 
 
 // 获取轮播图数据
@@ -10,7 +10,7 @@ export const getBannerApi = () => {
 
 // 每日推荐
 export const recommendSongsApi = () => {
-    return request({ url: `/recommend/songs` })
+    return request<recommendRes>({ url: `/recommend/songs` })
 }
 
 

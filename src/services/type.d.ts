@@ -9,15 +9,31 @@ export interface bannersRes {
 }
 
 // 每日推荐
-export interface recommendItem{
-
+export interface alItem {
+    id:number;
+    name:string;
+    pic:string;
+    picUrl:string;
+    pic_str:string;
 }
-// export interface recommendRes{
-//     code: number;
-//     values: {
+export interface recommendItem{
+    name:string;
+    al: alItem;
+    publishTime: number;
+}
 
-//     }
-// }
+export interface recommendReasonsItem{
+    songId:number;
+    reason:string;
+    reasonId:string;
+}
+export interface recommendRes{
+    code: number;
+    values: {
+        dailySongs: recommendItem[];
+        recommendReasons: recommendReasonsItem[];
+    }
+}
 
 
 // 热搜列表
