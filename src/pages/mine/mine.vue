@@ -1,12 +1,13 @@
 <script setup lang='ts'>
 import { ref} from 'vue'
-import { getSongsApi } from '../../services/index'
+import { getBannerApi } from '../../services/index'
 import type { bannersItem } from '../../services/type'
 
 const songs = ref<bannersItem[]>([])
+
 const getSongList = async () => {
     try{
-      const res = await getSongsApi()
+      const res = await getBannerApi()
       songs.value = res.data.banners
 
     }catch(e){

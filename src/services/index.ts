@@ -4,7 +4,7 @@ import type { bannersRes } from "./type";
 
 
 // 获取轮播图数据
-export const getSongsApi = () => {
+export const getBannerApi = () => {
     return request<bannersRes>({ url: "/banner" });
 }
 
