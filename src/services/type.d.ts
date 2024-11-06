@@ -1,8 +1,11 @@
+
 // banner 轮播图接口
 export interface bannersItem {
     imageUrl: string;
     targetId: number
 }
+
+//轮播图
 export interface bannersRes {
     banners: bannersItem[];
     code: number;
@@ -29,12 +32,11 @@ export interface recommendReasonsItem{
 }
 export interface recommendRes{
     code: number;
-    values: {
+    data: {
         dailySongs: recommendItem[];
         recommendReasons: recommendReasonsItem[];
     }
 }
-
 
 // 热搜列表
 export interface hotListItem {
@@ -51,6 +53,3 @@ export interface hotListRes {
     code:number;
     hotList: hotListItem[];
 }
-
-
-
