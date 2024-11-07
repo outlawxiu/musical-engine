@@ -5,7 +5,7 @@
 			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
 		}
 	},
-	"pages": [ 
+	"pages": [
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -19,7 +19,15 @@
 				"navigationBarTitleText": "网易云发现",
 				"navigationBarTextStyle": "white"
 			}
-		},{
+		},
+		{
+			"path": "pages/find/toplist",
+			"style": {
+				"navigationBarTitleText": "排行榜",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/roam/roam",
 			"style": {
 				"navigationBarTitleText": "网易云漫游",
@@ -32,7 +40,8 @@
 				"navigationBarTitleText": "网易云搜索",
 				"navigationBarTextStyle": "white"
 			}
-		},{
+		},
+		{
 			"path": "pages/dynamic/dynamic",
 			"style": {
 				"navigationBarTitleText": "网易云动态",
@@ -53,20 +62,20 @@
 				"navigationBarTextStyle": "white"
 			}
 		},
-        {
-            "path": "pages/index/recommendlist",
-            "style": {
-                "navigationBarTitleText": "每日推荐",
-                "navigationBarTextStyle": "white"
-            }
-        },
-        {
-            "path": "pages/index/recommendlistdetail",
-            "style": {
-                "navigationBarTitleText": "歌单详情",
-                "navigationBarTextStyle": "white"
-            }
-        }
+		{
+			"path": "pages/index/recommendlist",
+			"style": {
+				"navigationBarTitleText": "每日推荐",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/index/recommendlistdetail",
+			"style": {
+				"navigationBarTitleText": "歌单详情",
+				"navigationBarTextStyle": "white"
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -74,7 +83,7 @@
 		"navigationBarBackgroundColor": "#d43c33",
 		"backgroundColor": "#F8F8F8"
 	},
-	"tabBar":{
+	"tabBar": {
 		"color": "#777",
 		"selectedColor": "#ff0000",
 		"list": [

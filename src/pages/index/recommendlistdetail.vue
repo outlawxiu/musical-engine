@@ -35,6 +35,7 @@ onLoad((option) => {
                 {{ idx + 1 }}
             </text>
             <view class="song" style="display: flex; flex-direction: column;">
+                <text class="name">{{ item.name }}</text>
                 <text class="artists">{{ item.ar.map(item => item.name).join('、') }}</text>
             </view>
         </view>

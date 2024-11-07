@@ -66,6 +66,10 @@ const goRecommendDetail = (id: number) => {
   </view>
 </template>
 <style lang="scss" scoped>
+.title {
+    display: block;
+    margin-bottom: 10px;
+}
 .nav {
   display: flex;
   justify-content: space-around;
