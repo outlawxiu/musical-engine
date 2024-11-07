@@ -69,7 +69,7 @@ const changeCode = (yzm: number) => {
 };
 watch(code, () => {
   if (String(code.value).length === 4) {
-    getAndLogin(Number(telNumber.value), code.value).then((res => {
+    getAndLogin(Number(telNumber.value), code.value).then((res) => {
       console.log(res);
       if (res.data.data) {
         uni.switchTab({
