@@ -19,18 +19,18 @@ export interface alItem {
     picUrl:string;
     pic_str:string;
 }
-export interface recommendItem{
+export interface recommendItem {
     name:string;
     al: alItem;
     publishTime: number;
 }
 
-export interface recommendReasonsItem{
+export interface recommendReasonsItem {
     songId:number;
     reason:string;
     reasonId:string;
 }
-export interface recommendRes{
+export interface recommendRes {
     code: number;
     data: {
         dailySongs: recommendItem[];
@@ -55,6 +55,63 @@ export interface hotListRes {
 }
 
 
+// 所有榜单  artistToplist 类型
+export interface artistItem {
+    first: string;
+    third: number;
+}
+export interface artistToplist {
+    name: string;
+    coverUrl:string;
+    upateFrequency: string;
+    updateFrequency: string;
+    artists: artistItem[]
+}
+
+// 所有榜单 list数据的类型
+interface listItemtrackItem {
+    first: string;
+    second: string;
+}
+export interface listItem {
+    name: string;
+    coverImgUrl: string;
+    coverImgId:number;
+    tracks: listItemtrackItem[];
+}
+
+
+// 所有榜单 rewardToplist 类型
+export interface artistsItem {
+    name: string;
+    id:number;
+    img1v1Url: string;
+    picId: number;
+}
+export interface album{
+    artists: artistsItem[];
+}
+export interface songsItem {
+    name: string;
+    album: album;
+    artists:album[];
+}
+export interface rewardToplist {
+    name: string;
+    coverUrl:string;
+    songs: songsItem[]
+}
+
+
+export interface toplistRes {
+    code: number;
+    artistToplist: artistToplist[];
+    list: listItem[];
+    rewardToplist: rewardToplist;
+}
+
+
+
 
 // 心动模式
 export interface arItem {
@@ -77,3 +134,6 @@ export interface flutterRes {
     code: number;
     data:flutterListItem[]
 }
+
+
+
