@@ -64,12 +64,7 @@ innerAudioContext.onError((res) => {
             <text class="id">
                 {{ idx + 1 }}
             </text>
-<<<<<<< HEAD
-            <view class="song" style="display: flex; flex-direction: column;">
-                <text class="name">{{ item.name }}</text>
-=======
             <view class="song" style="display: flex; flex-direction: column;" @click="playMusic(item.id)">
->>>>>>> syf
                 <text class="artists">{{ item.ar.map(item => item.name).join('、') }}</text>
             </view>
 
