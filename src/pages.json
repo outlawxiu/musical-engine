@@ -60,6 +60,13 @@
                 "navigationBarTitleText": "歌单详情",
                 "navigationBarTextStyle": "white"
             }
+        },
+        {
+            "path": "pages/player/player",
+            "style": {
+                "navigationBarTitleText": "播放器",
+                "navigationBarTextStyle": "white"
+            }
         }
     ],
     "globalStyle": {
