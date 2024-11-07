@@ -22,6 +22,7 @@ export interface alItem {
 export interface recommendItem {
     name: string;
     al: alItem;
+    ar: arItem[];
     publishTime: number;
 }
 
@@ -181,3 +182,53 @@ export interface recommendPlaylistItem {
 }
 
 
+// 动态页数据
+interface picsItem {
+    format: string;
+    height: number;
+    originUrl: string;
+    pcRectangleUrl: string;
+    pcSquareUrl: string;
+    rectangleUrl: string;
+    squareUrl:string;
+    width: number;
+}
+interface userItem {
+    avatarDetail: {
+        identityIconUrl: string;
+        identityLevel: number;
+    }
+    backgroundUrl: string;
+    backgroundImgIdStr: string;
+    backgroundImgId: number;
+    avatarUrl: string;
+    nickname: string;
+}
+interface tailMarkItem {
+    markType: string;
+    markTitle: string;
+    markResourceId: string;
+    markOrpheusUrl: string;
+    circle: {
+        imageUrl: string;
+        member: string;
+        postCount: string;
+    }
+}
+
+ export interface dynamicItem {
+    id:number;
+    actId: number;
+    actName: string;
+    actType: number;
+    uuid: string;
+    pics: picsItem[];
+    user: userItem;
+    tailMark: tailMarkItem;
+    json: string;
+}
+
+export interface dynamicRes {
+    code: number;
+    events: dynamicItem[];
+}

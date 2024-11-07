@@ -6,7 +6,8 @@ import type {
     flutterRes,
     toplistRes,
     playlistDetailRes,
-    playMusicRes 
+    playMusicRes,
+    dynamicRes 
 } from "./type";
 
 
@@ -21,7 +22,7 @@ export const recommendSongsApi = () => {
 }
 // 推荐歌单
 export const recommendPlaylistApi = () => {
-    return request ({ url: '/top/playlist' })
+    return request({ url: '/top/playlist' })
 }
 // 所有榜单
 export const toplistApi = () => {
@@ -70,6 +71,13 @@ export const searchApi = (keywords: string) => {
         }
     })
 }
+
+// 动态页面数据接口
+export const dynamicApi = () =>{
+    return request<dynamicRes>({ url: '/topic/detail/event/hot?actid=111551188' })
+}
+
+
 //游客登陆 touristLogin
 export const touristLogin = () => {
     return request({
@@ -77,30 +85,30 @@ export const touristLogin = () => {
     })
 }
 //. 二维码检测扫码状态接口
-export const canLogin = (key:string) => {
+export const canLogin = (key: string) => {
     return request({
         url: '/login/qr/check',
-        data : {
+        data: {
             key,
-            timestamp : Date.now()
+            timestamp: Date.now()
         }
     })
 }
 
 //获取手机验证
-export const getCodeLogin = (phone:number) => {
+export const getCodeLogin = (phone: number) => {
     return request({
         url: '/captcha/sent',
-        data : {
+        data: {
             phone
         }
     })
 }
 //手机号验证码登录
-export const getAndLogin = (phone:number , captcha :number) => {
+export const getAndLogin = (phone: number, captcha: number) => {
     return request({
         url: '/captcha/verify',
-        data : {
+        data: {
             phone,
             captcha
         }
@@ -111,18 +119,18 @@ export const getAndLogin = (phone:number , captcha :number) => {
 export const getKey = () => {
     return request({
         url: '/login/qr/key',
-        timestamp : Date.now(),
+        timestamp: Date.now(),
     })
 }
 
 //二维码生成接口
-export const getQR = (key:string) => {
+export const getQR = (key: string) => {
     return request({
         url: '/login/qr/create',
-        data : {
+        data: {
             key,
-            timestamp : Date.now(),
-            qrimg:true
+            timestamp: Date.now(),
+            qrimg: true
         }
     })
 }
@@ -131,5 +139,12 @@ export const getQR = (key:string) => {
 export const getAccountInfo = () => {
     return request({
         url: '/user/account',
+    })
+}
+//排行榜
+export const topListApi = (id: number) => {
+    return request({
+        url: '/toplist',
+        data: { id }
     })
 }

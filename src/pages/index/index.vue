@@ -2,7 +2,10 @@
 import { onMounted, ref } from 'vue'
 import { getBannerApi, recommendPlaylistApi } from '../../services/index';
 import type { bannersItem, recommendPlaylistItem } from '../../services/type';
+
 import DailyRecommend from '../../components/DailyRecommend.vue'
+import Rankings from '../../components/Rankings.vue'
+
 const greeting = ref('')
 const getGreeting = () => {
   const now = new Date()
@@ -59,6 +62,7 @@ const goRecommendDetail = (id: number) => {
         </view>
       </view>
     </view>
+    <Rankings />
   </view>
 </template>
 <style lang="scss" scoped>
@@ -110,7 +114,7 @@ const goRecommendDetail = (id: number) => {
   display: flex;
   // flex-wrap: wrap;
   width: 100%;
-  height: 150px;
+  height: 180px;
   overflow: auto;
 
   &::-webkit-scrollbar {
