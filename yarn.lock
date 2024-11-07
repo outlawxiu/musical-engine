@@ -1277,6 +1277,11 @@
     "@dcloudio/uni-shared" "3.0.0-4020920240930001"
     debug "^4.3.3"
 
+"@dcloudio/uni-ui@^1.5.7":
+  version "1.5.7"
+  resolved "https://registry.npmmirror.com/@dcloudio/uni-ui/-/uni-ui-1.5.7.tgz#74daef1f537ae2b9320e51f44163fe56bdd19c87"
+  integrity sha512-DugxSIrQrze1FLdUOj9a+JEQ0bHGjnJTcGUK1mN/MivKg7nuKJBRWk5Ipa9sUdoBznX6ndz5h2e7Uao6x1CdCw==
+
 "@dcloudio/vite-plugin-uni@3.0.0-4020920240930001":
   version "3.0.0-4020920240930001"
   resolved "https://registry.npmmirror.com/@dcloudio/vite-plugin-uni/-/vite-plugin-uni-3.0.0-4020920240930001.tgz#0efb558f4b79da020a277a47eec74297a9a2dda5"
