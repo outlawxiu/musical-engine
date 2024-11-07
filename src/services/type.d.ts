@@ -144,6 +144,8 @@ export interface playMusicItem {
     id: number;
     encodeType: string;
     musicId: string;
+    al: alItem;
+    ar: arItem[];
 }
 export interface playMusicRes {
     code: number;
