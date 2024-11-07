@@ -1,30 +1,33 @@
 <script lang="ts" setup>
-import { getMusicList } from '@/service'
-import { ref } from 'vue'
+import { defineProps } from 'vue'
 
 
-const info = ref<AnyObject>([])
-const getMusicListData = async () => {
-  try {
-    const res = await getMusicList()
-    info.value = res.data.result
-    console.log(res.data)
-  } catch (error) {
-    console.log(error)
+const prop = defineProps({
+  list: {
+    type: Array,
+    default: () => []
   }
+})
+console.log(prop.list);
+const playCount = (num) => {
+  return num > 10000? (num / 10000).toFixed(1) + '万' : num
 }
-getMusicListData()
+const turnTo = (id) => {
+  console.log(id)
+}
 
 </script>
 
 <template>
   <scroll-view class="box" scroll-x show-scrollbar="false">
     <view class="slideBox">
-      <view class="slideBox-item" v-for="(item, index) in 5" :key="index">
-        <view class="">
-          {{ item }}
+      <view class="slideBox-item" v-for="(item, index) in list" :key="index">
+        <view class="mList">
+          <image :src="item.coverImgUrl" class="mListPic" mode="widthFix"></image>
+          <view class="playCount">{{ playCount(item.playCount) }}</view>
+          <view class="playBtn" @click.self="turnTo(item.id)"></view>
         </view>
-        <view></view>
+        <view class="descript">{{ item.name }}</view>
       </view>
     </view>
   </scroll-view>
@@ -33,16 +36,67 @@ getMusicListData()
 <style lang="scss" scoped>
 .box{
   width: 100%;
-  height: 200rpx;
+  height: 300rpx;
   display: flex;
   .slideBox{
     display: flex;
     width: 100%;
-    height: 200rpx;
+    height: 300rpx;
     .slideBox-item{
-    flex-shrink: 0;
-    width: 200rpx;
-    height: 200rpx;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      width: 200rpx;
+      height: 300rpx;
+      margin-right: 40rpx;
+      .mList{
+        flex-shrink: 0;
+        width: 100%;
+        height: 200rpx;
+        display: flex;
+        position: relative;
+        border-radius: 20rpx;
+        overflow: hidden;
+        image{
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+       .playCount{
+          position: absolute;
+          top: 10rpx;
+          left: 10rpx;
+          color: #fff;
+          font-size: 24rpx;
+        }
+        .playBtn{
+          position: absolute;
+          bottom: 20rpx;
+          right: 20rpx;
+          width: 0;
+          height: 0;
+          border-top: 30rpx solid transparent;
+          border-left: 30rpx solid #ffffff;
+          border-bottom: 30rpx solid transparent;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      .descript{
+        flex-shrink: 0;
+        width: 100%;
+        height: 100rpx;
+        line-height: 40rpx;
+        font-size: 24rpx;
+        color: #000;
+        margin-top: 10rpx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
     }
   }
 }

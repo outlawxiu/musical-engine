@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-<template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-
-    <Child />
-=======
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { getBannerApi } from '../../services/index';
@@ -55,7 +45,6 @@ getBannerApi().then(res => {
     </swiper>
     <text class="greeting">{{ greeting }}</text>
     <DailyRecommend />
->>>>>>> main
   </view>
 </template>
 
