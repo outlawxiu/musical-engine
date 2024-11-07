@@ -2,10 +2,6 @@
 import { ref } from 'vue'
 import { topListApi } from '../services/index'
 const topList = ref([])
-topListApi().then(res => {
-    topList.value = res.data.list
-    console.log(res.data.list)
-})
 const formatPlayCount = (playCount: number) => {
     if (playCount > 100000000) {
         return (playCount / 100000000).toFixed(1) + '亿'
@@ -15,13 +11,23 @@ const formatPlayCount = (playCount: number) => {
         return playCount
     }
 }
+topListApi().then(res => {
+    topList.value = res.data.list
+    console.log(res.data.list)
+})
+const goTopList = () => {
+    uni.navigateTo({
+        url: `/pages/find/toplist`
+    })
+    // console.log(id)
+}
 </script>
 
 <template>
     <view class="recommend">
-        <text class="title">排行榜&gt;</text>
+        <text class="title" @click="goTopList">排行榜&gt;</text>
         <view class="recommends">
-            <view class="recommend-list" v-for="(item, index) in topList" :key="index">
+            <view class="recommend-list" v-for="(item, index) in topList" :key="index" @click="goTopListDetail(item.id)">
                 <text class="plays">🎧{{ formatPlayCount(item.playCount) }}</text>
                 <image :src="item.coverImgUrl" />
             </view>
@@ -30,6 +36,10 @@ const formatPlayCount = (playCount: number) => {
 </template>
 
 <style lang="scss" scoped>
+.title {
+    display: block;
+    margin-bottom: 10px;
+}
 .recommends {
     display: flex;
     height: 150px;
@@ -63,11 +73,12 @@ const formatPlayCount = (playCount: number) => {
             color: #fff;
             z-index: 3;
         }
+
         .name {
-                position: absolute;
-                top: 30px;
-                left: 10px;
-            }
+            position: absolute;
+            top: 30px;
+            left: 10px;
+        }
 
         .desc {
             line-clamp: 2;
