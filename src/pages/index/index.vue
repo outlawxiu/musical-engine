@@ -9,7 +9,7 @@ const getGreeting = () => {
   const hour = now.getHours()
   if (hour >= 18 || hour < 5) {
     greeting.value = '晚上好'
-  } else if (hour > 12 || hour < 18) {
+  } else if (hour > 12 && hour < 18) {
     greeting.value = '下午好'
   } else if (hour < 12 || hour >= 5) {
     greeting.value = '早上好'
