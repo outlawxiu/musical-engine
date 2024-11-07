@@ -46,3 +46,53 @@ export const touristLogin = () => {
         url: '/register/anonimous'
     })
 }
+//. 二维码检测扫码状态接口
+export const canLogin = (key:string) => {
+    return request({
+        url: '/login/qr/check',
+        data : {
+            key,
+            timestamp : Date.now()
+        }
+    })
+}
+
+//获取手机验证
+export const getCodeLogin = (phone:number) => {
+    return request({
+        url: '/captcha/sent',
+        data : {
+            phone
+        }
+    })
+}
+//手机号验证码登录
+export const getAndLogin = (phone:number , captcha :number) => {
+    return request({
+        url: '/captcha/verify',
+        data : {
+            phone,
+            captcha
+        }
+    })
+}
+
+//获取二维码的key生成接口
+export const getKey = () => {
+    return request({
+        url: '/login/qr/key',
+        timestamp : Date.now(),
+    })
+}
+
+//二维码生成接口
+export const getQR = (key:string) => {
+    return request({
+        url: '/login/qr/create',
+        data : {
+            key,
+            timestamp : Date.now(),
+            qrimg:true
+        }
+    })
+}

@@ -5,6 +5,7 @@ import type { recommendItem } from '../services/type'
 const recommendSongs = ref<recommendItem[]>([])
 recommendSongsApi().then(res => {
     recommendSongs.value = res.data.data.dailySongs
+    console.log(recommendSongs)
 })
 const goRecommendList = () => {
     uni.navigateTo({
