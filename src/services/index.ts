@@ -21,7 +21,7 @@ export const recommendSongsApi = () => {
 }
 // 推荐歌单
 export const recommendPlaylistApi = () => {
-    return request({ url: '/personalized' })
+    return request ({ url: '/top/playlist' })
 }
 // 所有榜单
 export const toplistApi = () => {
