@@ -134,18 +134,17 @@ export const getQR = (key: string) => {
         }
     })
 }
-<<<<<<< HEAD
 
 // 获取账号信息
 export const getAccountInfo = () => {
     return request({
         url: '/user/account',
-=======
+    })
+}
 //排行榜
 export const topListApi = (id: number) => {
     return request({
         url: '/toplist',
         data: { id }
->>>>>>> yds
     })
 }
