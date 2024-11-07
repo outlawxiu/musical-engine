@@ -6,7 +6,8 @@ import type {
     flutterRes,
     toplistRes,
     playlistDetailRes,
-    playMusicRes 
+    playMusicRes,
+    dynamicRes 
 } from "./type";
 
 
@@ -70,6 +71,13 @@ export const searchApi = (keywords: string) => {
         }
     })
 }
+
+// 动态页面数据接口
+export const dynamicApi = () =>{
+    return request<dynamicRes>({ url: '/topic/detail/event/hot?actid=111551188' })
+}
+
+
 //游客登陆 touristLogin
 export const touristLogin = () => {
     return request({
