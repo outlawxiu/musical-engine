@@ -199,4 +199,9 @@ const swiperDotIndex = ref(0)
         opacity: .9;
     }
 }
+/* #ifdef H5 */
+.tab-container {
+    padding: 100rpx 20rpx 20rpx 20rpx;
+}
+/* #endif */
 </style>
