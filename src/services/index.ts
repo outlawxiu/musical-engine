@@ -146,6 +146,13 @@ export const topListApi = (id: number) => {
     data: { id },
   });
 };
+//排行榜详情
+export const topListDetailApi = (id: number) => {
+  return request({
+    url: "/top/list",
+    data: { id },
+  });
+};
 // 搜索建议
 export const searchSuggestApi = (keywords: string) => {
   return request({
