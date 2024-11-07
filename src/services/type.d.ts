@@ -111,6 +111,45 @@ export interface toplistRes {
 }
 // 所有榜单 end
 
+// 歌单详情
+export interface tracksItem {
+    name: string;
+    al: alItem;
+    ar: arItem[];
+}
+export interface playlist{
+    id:number;
+    adType: number;
+    commentThreadId: string;
+    coverImgId: number;
+    coverImgId_str: string;
+    coverImgUrl: string;
+    createTime: number;
+    name:string;
+    playlistType:number;
+    tags:string[];
+    tracks: tracksItem[]
+}
+
+export interface playlistDetailRes {
+    code: number;
+    playlist: playlist;
+}
+
+// 播放音乐
+export interface playMusicItem {
+    url: string;
+    time: number;
+    id: number;
+    encodeType: string;
+    musicId: string;
+}
+export interface playMusicRes {
+    code: number;
+    data:playMusicItem[]
+}
+
+
 
 // 心动模式
 export interface arItem {

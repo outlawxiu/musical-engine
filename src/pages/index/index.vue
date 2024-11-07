@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { getBannerApi } from '../../services/index';
-import type { bannersItem } from '../../services/type';
+import { getBannerApi, recommendPlaylistApi } from '../../services/index';
+import type { bannersItem, recommendPlaylistItem } from '../../services/type';
 import DailyRecommend from '../../components/DailyRecommend.vue'
 const greeting = ref('')
 const getGreeting = () => {
@@ -9,7 +9,7 @@ const getGreeting = () => {
   const hour = now.getHours()
   if (hour >= 18 || hour < 5) {
     greeting.value = '晚上好'
-  } else if (hour > 12 || hour < 18) {
+  } else if (hour > 12 && hour < 18) {
     greeting.value = '下午好'
   } else if (hour < 12 || hour >= 5) {
     greeting.value = '早上好'
@@ -19,17 +19,22 @@ onMounted(() => {
   getGreeting()
 })
 const banners = ref<bannersItem[]>([])
-getBannerApi().then(res => {
+getBannerApi().then((res: { data: { banners: { imageUrl: string; targetId: number; }[]; }; }) => {
   banners.value = res.data.banners
-  // console.log(res.data.banners)
 })
-
-
-
-
+const recommendPlayList = ref<recommendPlaylistItem[]>([])
+recommendPlaylistApi().then((res => {
+  // console.log(res)
+  recommendPlayList.value = res.data.result
+}))
+const goRecommendDetail = (id: number) => {
+  uni.navigateTo({
+    url: '/pages/index/recommendlistdetail'
+  });
+  // console.log(id)
+}
 </script>
 <template>
-
   <view class="content">
     <view class="nav">
       <img src="../../static/01.png" alt="" class="img1">
@@ -45,9 +50,18 @@ getBannerApi().then(res => {
     </swiper>
     <text class="greeting">{{ greeting }}</text>
     <DailyRecommend />
+    <view class="recommend">
+      <text class="title">推荐歌单&gt;</text>
+      <view class="recommends">
+        <view class="recommend-list" v-for="items in recommendPlayList" :key="items.id" @click="goRecommendDetail(items.id)">
+          <text class="plays">🎧{{ items.playCount }}</text>
+          <image :src="items.picUrl" alt="" />
+          <view class="desc"><text class="name">{{ items.name }}</text></view>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
-
 <style lang="scss" scoped>
 .nav {
   display: flex;
@@ -87,7 +101,61 @@ getBannerApi().then(res => {
   margin-top: 10px;
   box-sizing: border-box;
 }
+
 .content {
   padding: 0 10px;
+  overflow: scroll;
+}
+
+.recommends {
+  display: flex;
+  // flex-wrap: wrap;
+  width: 100%;
+  height: 150px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.recommend {
+  .title {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .recommend-list {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: pink;
+    border-radius: 20px;
+    margin-right: 10px;
+
+    .plays {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      font-size: 12px;
+      color: #fff;
+      z-index: 3;
+    }
+
+    .desc {
+      line-clamp: 2;
+      box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 12px;
+    }
+  }
+}
+
+image {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
 }
 </style>
