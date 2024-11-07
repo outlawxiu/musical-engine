@@ -40,6 +40,7 @@ export const searchApi = (keywords: string) => {
         }
     })
 }
+
 //游客登陆 touristLogin
 export const touristLogin = () => {
     return request({
@@ -101,5 +102,15 @@ export const getQR = (key:string) => {
 export const getAccountInfo = () => {
     return request({
         url: '/user/account',
+    })
+}
+
+// 搜索建议
+export const searchSuggestApi = (keywords: string) => {
+    return request({
+        url: '/search/suggest',
+        data: {
+            keywords
+        }
     })
 }

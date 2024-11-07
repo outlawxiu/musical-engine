@@ -13,12 +13,12 @@ const getInfo = () => {
     key: "userInfo",
     success: function (res) {
       const cookie = JSON.parse(res.data).cookie
-      console.log(decodeURIComponent(cookie));
+      // console.log(decodeURIComponent(cookie));
     },
   });
   getAccountInfo()
   .then( res => {
-    console.log(res);
+    // console.log(res);
     
   })
 

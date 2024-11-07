@@ -84,11 +84,13 @@ const login = async () => {
     showDialog.value = true;
     return;
   }
-  showCodeLogin.value = true;
   console.log(Number(telNumber.value));
   const reg = /^1[3,4,5,6,7,8,9]\d{9}$/;
   if (reg.test(telNumber.value)) {
+    showCodeLogin.value = true;
     const back = getCodeLogin(Number(telNumber.value));
+  }else{
+    alert("请输入正确的手机号码")
   }
 };
 
