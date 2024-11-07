@@ -14,11 +14,12 @@ export const recommendSongsApi = () => {
 }
 
 // 心动模式数据
-export const flutterListApi = (id: string) =>{
+export const flutterListApi = (id: string, pid: string) =>{
     return request<flutterRes>({ 
         url: '/playmode/intelligence/list',
         data:{
-            pid:id
+            pid,
+            id
         }
     })
 }
