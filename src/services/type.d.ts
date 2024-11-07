@@ -1,8 +1,11 @@
+
 // banner 轮播图接口
 export interface bannersItem {
     imageUrl: string;
     targetId: number
 }
+
+//轮播图
 export interface bannersRes {
     banners: bannersItem[];
     code: number;
@@ -16,25 +19,25 @@ export interface alItem {
     picUrl:string;
     pic_str:string;
 }
-export interface recommendItem{
+export interface recommendItem {
     name:string;
     al: alItem;
     publishTime: number;
-    ar: any[];
 }
-export interface recommendReasonsItem{
+
+export interface recommendReasonsItem {
     songId:number;
     reason:string;
     reasonId:string;
 }
-export interface recommendRes{
-    data: any;
+export interface recommendRes {
     code: number;
-    values: {
+    data: {
         dailySongs: recommendItem[];
         recommendReasons: recommendReasonsItem[];
     }
 }
+
 // 热搜列表
 export interface hotListItem {
     alg: string;
@@ -45,25 +48,91 @@ export interface hotListItem {
     searchWord: string;
     source:number;
     url: string;
-    id: number;
 }
 export interface hotListRes {
     code:number;
     hotList: hotListItem[];
 }
 
-// 推荐歌单
-export interface recommendPlaylistItem {
-    id: number;
+// 所有榜单 start
+//  artistToplist 类型
+export interface artistItem {
+    first: string;
+    third: number;
+}
+export interface artistToplist {
     name: string;
-    playCount: number;
-    trackCount: number;
-    picUrl: string;
+    coverUrl:string;
+    upateFrequency: string;
+    updateFrequency: string;
+    artists: artistItem[]
 }
-export interface recommendPlaylistRes {
+
+//  list数据的类型
+interface listItemtrackItem {
+    first: string;
+    second: string;
+}
+export interface listItem {
+    name: string;
+    coverImgUrl: string;
+    coverImgId:number;
+    tracks: listItemtrackItem[];
+}
+
+
+//  rewardToplist 类型
+export interface artistsItem {
+    name: string;
+    id:number;
+    img1v1Url: string;
+    picId: number;
+}
+export interface album{
+    artists: artistsItem[];
+}
+export interface songsItem {
+    name: string;
+    album: album;
+    artists:album[];
+}
+export interface rewardToplist {
+    name: string;
+    coverUrl:string;
+    songs: songsItem[]
+}
+
+
+export interface toplistRes {
     code: number;
-    data: {
-        result: recommendPlaylistItem[]
-    }
+    artistToplist: artistToplist[];
+    list: listItem[];
+    rewardToplist: rewardToplist;
 }
-// 歌单详情
+// 所有榜单 end
+
+
+// 心动模式
+export interface arItem {
+    name: string;
+    id: number;
+}
+export interface songInfoItem {
+    no:string;
+    name:string;
+    privilege:string;
+    al: alItem[];
+}
+
+export interface flutterListItem{
+    id: number;
+    songInfo: songInfoItem;
+}
+
+export interface flutterRes {
+    code: number;
+    data:flutterListItem[]
+}
+
+
+
