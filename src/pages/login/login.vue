@@ -25,6 +25,7 @@
           </label>
         </checkbox-group>
       </view>
+      <view @click="isQRlogin = true">二维码登录</view>
     </div>
     <view class="tourist" @click="touristLoginI">立即体验</view>
     <view class="dialog" @click="showDialog = !showDialog" v-if="showDialog">
@@ -44,6 +45,7 @@
     v-model="showCodeLogin"
     @changeCode="changeCode"
   ></CodeLogin>
+  <QRcodeLogin v-if="isQRlogin" v-model="isQRlogin"> </QRcodeLogin>
 </template>
 
 <script setup lang="ts">
@@ -51,11 +53,13 @@ import { reactive, ref, watch } from "vue";
 import { touristLogin } from "../../services/index";
 import CodeLogin from "../../components/CodeLogin.vue";
 import { getCodeLogin, getAndLogin } from "../../services/index";
+import QRcodeLogin from "../../components/QRcodeLogin.vue";
 const showClearIcon = ref(true);
 const telNumber = ref("");
 const canlogin = ref(false);
 const showDialog = ref(false);
 const showCodeLogin = ref(false);
+const isQRlogin = ref(false);
 const clearIcon = () => {
   telNumber.value = "";
 };
@@ -64,15 +68,16 @@ const changeCode = (yzm: number) => {
   code.value = yzm;
 };
 watch(code, () => {
-  getAndLogin(Number(telNumber.value),code.value).then((res) => {
-    console.log(res);
-    
-    if (res.data.data) {
-      uni.switchTab({
-        url: "/pages/index/index",
-      });
-    }
-  });
+  if (String(code.value).length === 4) {
+    getAndLogin(Number(telNumber.value), code.value).then((res) => {
+      console.log(res);
+      if (res.data.data) {
+        uni.switchTab({
+          url: "/pages/index/index",
+        });
+      }
+    });
+  }
 });
 const login = async () => {
   if (!canlogin.value) {
@@ -99,11 +104,6 @@ watch(
     immediate: true,
   }
 );
-// const codeLogin = () => {
-//   console.log(telNumber.value);
-//   getCode()
-// }
-const getCode = () => {};
 const touristLoginI = async () => {
   if (!canlogin.value) {
     showDialog.value = true;

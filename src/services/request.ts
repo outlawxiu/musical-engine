@@ -22,7 +22,7 @@ const request = <T>({
             method,
             data,
             header,
-            success: (res: ReponseType<{}>) => {
+            success: (res: ReponseType<T>) => {
                 resolve(res)
             },
             fail: reject
