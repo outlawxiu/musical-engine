@@ -24,14 +24,14 @@ getBannerApi().then((res: { data: { banners: { imageUrl: string; targetId: numbe
 })
 const recommendPlayList = ref<recommendPlaylistItem[]>([])
 recommendPlaylistApi().then((res => {
-  console.log(res)
+  // console.log(res)
   recommendPlayList.value = res.data.result
 }))
 const goRecommendDetail = (id: number) => {
   uni.navigateTo({
     url: '/pages/index/recommendlistdetail'
   });
-  console.log(id)
+  // console.log(id)
 }
 </script>
 <template>

@@ -126,3 +126,10 @@ export const getQR = (key:string) => {
         }
     })
 }
+
+// 获取账号信息
+export const getAccountInfo = () => {
+    return request({
+        url: '/user/account',
+    })
+}

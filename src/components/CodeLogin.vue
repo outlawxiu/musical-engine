@@ -48,7 +48,7 @@ const showCodeLogin = defineModel();
   height: 100vh;
   width: 100vw;
   // #ifdef WEB
-  //   height: calc(100vh - 88rpx);
+    height: calc(100vh - 88rpx);
   // #endif
   background: white !important;
   z-index: 6;
