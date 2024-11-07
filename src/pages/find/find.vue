@@ -34,8 +34,9 @@
 				</swiper-item>
 			</swiper>
 		</uni-swiper-dot>
-        <h4>甄选歌单</h4>
+        <h4 style="margin-bottom: 20rpx;">甄选歌单</h4>
         <slideBox :list="list"/>
+        <slidePlayer />
       </view>
       <view class="tab-content" v-if="current === 1">
         消息内容
@@ -54,6 +55,7 @@ import { getBannersApi } from '@/service';
 import { ref} from 'vue'
 import slideBox from '@/components/slideBox.vue';
 import { getMusicList } from '@/service'
+import slidePlayer from '@/components/slidePlayer.vue'
 
 const current = ref(0)
 const info = ref<AnyObject>([])
@@ -72,7 +74,6 @@ const getMusicListData = async () => {
   try {
     const res = await getMusicList()
     list.value = res.data.playlists
-    console.log(list.value)
   } catch (error) {
     console.log(error)
   }

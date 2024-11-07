@@ -9,19 +9,24 @@ const prop = defineProps({
   }
 })
 console.log(prop.list);
-const playCount = (num) => {
+const playCount = (num: number) => {
   return num > 10000? (num / 10000).toFixed(1) + '万' : num
 }
 const turnTo = (id) => {
   console.log(id)
 }
-
+interface item {
+  coverImgUrl: string,
+  id: string,
+  name: string,
+  playCount: string
+}
 </script>
 
 <template>
   <scroll-view class="box" scroll-x show-scrollbar="false">
     <view class="slideBox">
-      <view class="slideBox-item" v-for="(item, index) in list" :key="index">
+      <view class="slideBox-item" v-for="(item, index:number) in list" :key="index">
         <view class="mList">
           <image :src="item.coverImgUrl" class="mListPic" mode="widthFix"></image>
           <view class="playCount">{{ playCount(item.playCount) }}</view>
