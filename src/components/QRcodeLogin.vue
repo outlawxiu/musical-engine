@@ -1,9 +1,16 @@
 <template>
+  <!-- #ifdef MP-WEIXIN -->
+  <div class="whole">
+    <img :src="qrSrc" alt="" />
+  </div>
+  <!-- #endif -->
+  <!-- #ifdef WEB -->
   <Teleport to="body">
     <div class="whole">
       <img :src="qrSrc" alt="" />
     </div>
   </Teleport>
+  <!-- #endif-->
 </template>
 <script setup lang="ts">
 import { onMounted, onUnmounted, reactive, ref } from "vue";
@@ -33,19 +40,19 @@ getKey().then((res) => {
           console.log(res.data);
           obj.cookie = res.data.cookie;
           console.log(obj);
-            uni.setStorage({
-              key: "userInfo",
-              data: JSON.stringify(obj),
-              success: function () {
-                uni.switchTab({
-                  url: "/pages/index/index",
-                });
-              },
-            });
+          uni.setStorage({
+            key: "userInfo",
+            data: JSON.stringify(obj),
+            success: function () {
+              uni.switchTab({
+                url: "/pages/index/index",
+              });
+            },
+          });
           clearInterval(timer.value!);
         }
         if (res.data.code === 800) {
-            clearInterval(timer.value!);
+          clearInterval(timer.value!);
         }
       });
     }, 1000);
