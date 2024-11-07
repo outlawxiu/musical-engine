@@ -136,6 +136,18 @@ export interface playlistDetailRes {
     playlist: playlist;
 }
 
+// 播放音乐
+export interface playMusicItem {
+    url: string;
+    time: number;
+    id: number;
+    encodeType: string;
+    musicId: string;
+}
+export interface playMusicRes {
+    code: number;
+    data:playMusicItem[]
+}
 
 
 

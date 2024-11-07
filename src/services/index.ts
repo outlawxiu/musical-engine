@@ -1,6 +1,13 @@
 import request from "./request";
 
-import type { bannersRes, recommendRes, flutterRes, toplistRes, playlistDetailRes } from "./type";
+import type {
+    bannersRes,
+    recommendRes,
+    flutterRes,
+    toplistRes,
+    playlistDetailRes,
+    playMusicRes 
+} from "./type";
 
 
 // 获取轮播图数据
@@ -36,6 +43,17 @@ export const flutterApi = (id:number, pid:number) => {
 // 歌单详情
 export const playlistDetailApi = (id: string) => {
     return request<playlistDetailRes>({ url: '/playlist/detail', data: { id } })
+}
+
+
+// 播放歌曲
+export const playMusicApi = (id: string) => {
+    return request<playMusicRes>({
+        url: '/song/url',
+        data: {
+            id
+        }
+    })
 }
 
 // 热搜列表
