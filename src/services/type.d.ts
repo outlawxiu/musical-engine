@@ -22,6 +22,7 @@ export interface alItem {
 export interface recommendItem {
     name: string;
     al: alItem;
+    ar: arItem[];
     publishTime: number;
 }
 
