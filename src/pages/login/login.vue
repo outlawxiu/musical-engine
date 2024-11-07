@@ -27,13 +27,9 @@
       </view>
     </div>
     <view class="tourist" @click="touristLoginI">立即体验</view>
-    <view
-      class="dialog"
-      @click.self="showDialog = !showDialog"
-      v-if="showDialog"
-    >
+    <view class="dialog" @click="showDialog = !showDialog" v-if="showDialog">
       <view class="btns">
-        <view>
+        <view class="tip">
           <text>同意协议后登录</text>
         </view>
         <view class="agree">
@@ -43,24 +39,54 @@
       </view>
     </view>
   </div>
+  <CodeLogin
+    v-if="showCodeLogin"
+    v-model="showCodeLogin"
+    @changeCode="changeCode"
+  ></CodeLogin>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref, watch } from "vue";
 import { touristLogin } from "../../services/index";
+import CodeLogin from "../../components/CodeLogin.vue";
+import { getCodeLogin, getAndLogin } from "../../services/index";
 const showClearIcon = ref(true);
 const telNumber = ref("");
 const canlogin = ref(false);
 const showDialog = ref(false);
+const showCodeLogin = ref(false);
 const clearIcon = () => {
   telNumber.value = "";
 };
-const login = () => {
+const code = ref(0);
+const changeCode = (yzm: number) => {
+  code.value = yzm;
+};
+watch(code, () => {
+  getAndLogin(Number(telNumber.value),code.value).then((res) => {
+    console.log(res);
+    
+    if (res.data.data) {
+      uni.switchTab({
+        url: "/pages/index/index",
+      });
+    }
+  });
+});
+const login = async () => {
   if (!canlogin.value) {
     showDialog.value = true;
     return;
   }
+  showCodeLogin.value = true;
+  console.log(Number(telNumber.value));
+  const reg = /^1[3,4,5,6,7,8,9]\d{9}$/;
+  if (reg.test(telNumber.value)) {
+    const back = getCodeLogin(Number(telNumber.value));
+  }
 };
+
 const changeCanlog = () => {
   canlogin.value = true;
 };
@@ -73,20 +99,24 @@ watch(
     immediate: true,
   }
 );
+// const codeLogin = () => {
+//   console.log(telNumber.value);
+//   getCode()
+// }
+const getCode = () => {};
 const touristLoginI = async () => {
   if (!canlogin.value) {
     showDialog.value = true;
     return;
   }
-  const back = await touristLogin();
+  const back: { [key: string]: any } = await touristLogin();
   if (back.data.code === 200) {
+    console.log(back.data.userId);
     const obj = {
       cookie: back.data.cookie,
       createTime: back.data.createTime,
       userId: back.data.userId,
     };
-    // console.log(obj);
-    // console.log(JSON.stringify(obj));
     uni.setStorage({
       key: "userInfo",
       data: JSON.stringify(obj),
@@ -103,6 +133,9 @@ const touristLoginI = async () => {
 <style lang="scss" scoped>
 .whole {
   height: 100vh;
+  // #ifdef WEB
+  height: calc(100vh - 88rpx);
+  // #endif
   width: 100vw;
   background: #fef4f3;
   position: relative;
@@ -122,6 +155,15 @@ const touristLoginI = async () => {
   display: flex;
   align-items: center;
   padding: 10rpx;
+}
+.app {
+  width: 100%;
+  view {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
 }
 .countrycode {
   padding: 0 20rpx;
@@ -159,13 +201,18 @@ const touristLoginI = async () => {
 .btns {
   position: absolute;
   bottom: 0;
-  height: 150rpx;
+  // height: 150rpx;
   width: 100vw;
   display: flex;
   flex-direction: column;
   background: white;
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
+}
+.tip {
+  min-height: 100rpx;
+  padding: 10px;
+  box-sizing: border-box;
 }
 .agree {
   display: flex;

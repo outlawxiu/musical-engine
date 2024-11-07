@@ -40,3 +40,21 @@ export const touristLogin = () => {
         url: '/register/anonimous'
     })
 }
+
+export const getCodeLogin = (phone:number) => {
+    return request({
+        url: '/captcha/sent',
+        data : {
+            phone
+        }
+    })
+}
+export const getAndLogin = (phone:number , captcha :number) => {
+    return request({
+        url: '/captcha/verify',
+        data : {
+            phone,
+            captcha
+        }
+    })
+}
