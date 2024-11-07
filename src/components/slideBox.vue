@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import { onLoad } from '@dcloudio/uni-app'
+import { getMusicList } from '@/service'
 
 
 const prop = defineProps({
@@ -12,8 +14,10 @@ console.log(prop.list);
 const playCount = (num: number) => {
   return num > 10000? (num / 10000).toFixed(1) + '万' : num
 }
-const turnTo = (id) => {
-  console.log(id)
+const turnTo = (id: string) => {
+  uni.navigateTo({
+    url: '/pages/index/recommendlistdetail?id='+ id
+  })
 }
 interface item {
   coverImgUrl: string,
@@ -30,7 +34,7 @@ interface item {
         <view class="mList">
           <image :src="item.coverImgUrl" class="mListPic" mode="widthFix"></image>
           <view class="playCount">{{ playCount(item.playCount) }}</view>
-          <view class="playBtn" @click.self="turnTo(item.id)"></view>
+          <view class="playBtn" @click="turnTo(item.id)"></view>
         </view>
         <view class="descript">{{ item.name }}</view>
       </view>
