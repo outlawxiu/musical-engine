@@ -6,7 +6,7 @@ const recommendListDetail = ref<hotListItem[]>([]);
 const playlistId = 'id';
 playlistDetailApi(playlistId).then( res => {
     recommendListDetail.value = res.data.playlist;
-    console.log(res);
+    // console.log(res);
 })
 </script>
 

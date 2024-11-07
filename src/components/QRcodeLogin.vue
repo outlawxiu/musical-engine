@@ -65,10 +65,13 @@ getKey().then((res) => {
   height: 100vh;
   width: 100vw;
   position: fixed;
-  top: 88rpx;
+  top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+  // #ifdef WEB
+  top: 88rpx;
+  // #endif
   background: white;
   z-index: 6;
   display: flex;
@@ -76,6 +79,10 @@ getKey().then((res) => {
   img {
     width: 80vw;
     height: 80vw;
+    // #ifdef MP-WEIXIN
+    height: 480rpx;
+    width: 480rpx;
+    // #endif
   }
 }
 </style>
