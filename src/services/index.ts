@@ -1,6 +1,6 @@
 import request from "./request";
 
-import type { bannersRes, recommendRes } from "./type";
+import type { bannersRes, recommendRes, flutterRes, toplistRes } from "./type";
 
 
 // 获取轮播图数据
@@ -14,12 +14,24 @@ export const recommendSongsApi = () => {
 }
 // 推荐歌单
 export const recommendPlaylistApi = () => {
-    return request ({ url: '/personalized' })
+    return request({ url: '/personalized' })
 }
 // 所有榜单
 export const toplistApi = () => {
-    return request({ url: '/toplist/detail' })
+    return request<toplistRes>({ url: '/toplist/detail' })
 }
+
+// 心动模式
+export const flutterApi = (id:number, pid:number) => {
+    return request<flutterRes>({ 
+        url: '/playmode/intelligence/list',
+        data:{
+            id,
+            pid
+        }
+     })
+}
+
 
 // 歌单详情
 export const playlistDetailApi = (id: string) => {
