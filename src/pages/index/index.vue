@@ -24,12 +24,12 @@ getBannerApi().then((res: { data: { banners: { imageUrl: string; targetId: numbe
 })
 const recommendPlayList = ref<recommendPlaylistItem[]>([])
 recommendPlaylistApi().then((res => {
-  console.log(res)
-  recommendPlayList.value = res.data.result
+  // console.log(res.data.playlists)
+  recommendPlayList.value = res.data.playlists
 }))
 const goRecommendDetail = (id: number) => {
   uni.navigateTo({
-    url: '/pages/index/recommendlistdetail'
+    url: '/pages/index/recommendlistdetail?id='+ id
   });
   console.log(id)
 }
@@ -38,7 +38,7 @@ const goRecommendDetail = (id: number) => {
   <view class="content">
     <view class="nav">
       <img src="../../static/01.png" alt="" class="img1">
-      <input type="text" placeholder="输入搜索内容" class="search">
+      <input type="text" placeholder="输入搜索内容" class="search" @click="goSearch">
       <img src="../../static/music_1.png" alt="" class="img2">
     </view>
     <swiper class="swiper">
@@ -55,7 +55,7 @@ const goRecommendDetail = (id: number) => {
       <view class="recommends">
         <view class="recommend-list" v-for="items in recommendPlayList" :key="items.id" @click="goRecommendDetail(items.id)">
           <text class="plays">🎧{{ items.playCount }}</text>
-          <image :src="items.picUrl" alt="" />
+          <image :src="items.coverImgUrl" alt="" />
           <view class="desc"><text class="name">{{ items.name }}</text></view>
         </view>
       </view>

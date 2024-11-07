@@ -13,22 +13,22 @@ export interface bannersRes {
 
 // 每日推荐
 export interface alItem {
-    id:number;
-    name:string;
-    pic:string;
-    picUrl:string;
-    pic_str:string;
+    id: number;
+    name: string;
+    pic: string;
+    picUrl: string;
+    pic_str: string;
 }
 export interface recommendItem {
-    name:string;
+    name: string;
     al: alItem;
     publishTime: number;
 }
 
 export interface recommendReasonsItem {
-    songId:number;
-    reason:string;
-    reasonId:string;
+    songId: number;
+    reason: string;
+    reasonId: string;
 }
 export interface recommendRes {
     code: number;
@@ -46,11 +46,11 @@ export interface hotListItem {
     iconUrl: string;
     score: number;
     searchWord: string;
-    source:number;
+    source: number;
     url: string;
 }
 export interface hotListRes {
-    code:number;
+    code: number;
     hotList: hotListItem[];
 }
 
@@ -62,7 +62,7 @@ export interface artistItem {
 }
 export interface artistToplist {
     name: string;
-    coverUrl:string;
+    coverUrl: string;
     upateFrequency: string;
     updateFrequency: string;
     artists: artistItem[]
@@ -76,7 +76,7 @@ interface listItemtrackItem {
 export interface listItem {
     name: string;
     coverImgUrl: string;
-    coverImgId:number;
+    coverImgId: number;
     tracks: listItemtrackItem[];
 }
 
@@ -84,21 +84,21 @@ export interface listItem {
 //  rewardToplist 类型
 export interface artistsItem {
     name: string;
-    id:number;
+    id: number;
     img1v1Url: string;
     picId: number;
 }
-export interface album{
+export interface album {
     artists: artistsItem[];
 }
 export interface songsItem {
     name: string;
     album: album;
-    artists:album[];
+    artists: album[];
 }
 export interface rewardToplist {
     name: string;
-    coverUrl:string;
+    coverUrl: string;
     songs: songsItem[]
 }
 
@@ -118,21 +118,27 @@ export interface arItem {
     id: number;
 }
 export interface songInfoItem {
-    no:string;
-    name:string;
-    privilege:string;
+    no: string;
+    name: string;
+    privilege: string;
     al: alItem[];
 }
 
-export interface flutterListItem{
+export interface flutterListItem {
     id: number;
     songInfo: songInfoItem;
 }
 
 export interface flutterRes {
     code: number;
-    data:flutterListItem[]
+    data: flutterListItem[]
 }
-
+//推荐歌单
+export interface recommendPlaylistItem {
+    id: number;
+    name: string;
+    coverImgUrl: string;
+    playCount: number;
+}
 
 
