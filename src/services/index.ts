@@ -1,6 +1,6 @@
 import request from "./request";
 
-import type { bannersRes, recommendRes, flutterRes, toplistRes } from "./type";
+import type { bannersRes, recommendRes, flutterRes, toplistRes, playlistDetailRes } from "./type";
 
 
 // 获取轮播图数据
@@ -35,7 +35,7 @@ export const flutterApi = (id:number, pid:number) => {
 
 // 歌单详情
 export const playlistDetailApi = (id: string) => {
-    return request({ url: '/playlist/detail', data: { id } })
+    return request<playlistDetailRes>({ url: '/playlist/detail', data: { id } })
 }
 
 // 热搜列表
