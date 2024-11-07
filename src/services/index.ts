@@ -48,7 +48,7 @@ export const playlistDetailApi = (id: string) => {
 
 
 // 播放歌曲
-export const playMusicApi = (id: string) => {
+export const playMusicApi = (id: number) => {
     return request<playMusicRes>({
         url: '/song/url',
         data: {
@@ -119,7 +119,7 @@ export const getAndLogin = (phone: number, captcha: number) => {
 export const getKey = () => {
     return request({
         url: '/login/qr/key',
-        timestamp: Date.now(),
+        timestamp: Date.now()
     })
 }
 
