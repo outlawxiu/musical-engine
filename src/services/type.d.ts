@@ -53,3 +53,27 @@ export interface hotListRes {
     code:number;
     hotList: hotListItem[];
 }
+
+
+
+// 心动模式
+export interface arItem {
+    name: string;
+    id: number;
+}
+export interface songInfoItem {
+    no:string;
+    name:string;
+    privilege:string;
+    al: alItem[];
+}
+
+export interface flutterListItem{
+    id: number;
+    songInfo: songInfoItem;
+}
+
+export interface flutterRes {
+    code: number;
+    data:flutterListItem[]
+}
