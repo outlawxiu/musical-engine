@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 // banner 轮播图接口
-=======
->>>>>>> yds
 export interface bannersItem {
     imageUrl: string;
     targetId: number
 }
-<<<<<<< HEAD
-=======
-//轮播图
->>>>>>> yds
 export interface bannersRes {
     banners: bannersItem[];
     code: number;
@@ -27,29 +20,21 @@ export interface recommendItem{
     name:string;
     al: alItem;
     publishTime: number;
+    ar: any[];
 }
-
 export interface recommendReasonsItem{
     songId:number;
     reason:string;
     reasonId:string;
 }
 export interface recommendRes{
-<<<<<<< HEAD
+    data: any;
     code: number;
     values: {
-=======
-    // data: any;
-    code: number;
-    data: {
->>>>>>> yds
         dailySongs: recommendItem[];
         recommendReasons: recommendReasonsItem[];
     }
 }
-<<<<<<< HEAD
-
-
 // 热搜列表
 export interface hotListItem {
     alg: string;
@@ -60,13 +45,25 @@ export interface hotListItem {
     searchWord: string;
     source:number;
     url: string;
+    id: number;
 }
 export interface hotListRes {
     code:number;
     hotList: hotListItem[];
 }
 
-
-
-=======
->>>>>>> yds
+// 推荐歌单
+export interface recommendPlaylistItem {
+    id: number;
+    name: string;
+    playCount: number;
+    trackCount: number;
+    picUrl: string;
+}
+export interface recommendPlaylistRes {
+    code: number;
+    data: {
+        result: recommendPlaylistItem[]
+    }
+}
+// 歌单详情

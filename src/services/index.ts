@@ -1,5 +1,4 @@
 import request from "./request";
-<<<<<<< HEAD
 
 import type { bannersRes, recommendRes } from "./type";
 
@@ -13,8 +12,10 @@ export const getBannerApi = () => {
 export const recommendSongsApi = () => {
     return request<recommendRes>({ url: `/recommend/songs` })
 }
-
-
+// 推荐歌单
+export const recommendPlaylistApi = () => {
+    return request ({ url: '/personalized' })
+}
 // 所有榜单
 export const toplistApi = () => {
     return request({ url: '/toplist/detail' })
@@ -24,7 +25,6 @@ export const toplistApi = () => {
 export const playlistDetailApi = (id: string) => {
     return request({ url: '/playlist/detail', data: { id } })
 }
-
 
 // 热搜列表
 export const searchHotApi = () => {
@@ -45,16 +45,4 @@ export const touristLogin = () => {
     return request({
         url: '/register/anonimous'
     })
-=======
-import type { bannersRes, recommendRes } from './type'
-
-// 获取轮播图
-export const bannerApi = () => {
-    return request<bannersRes>({ url: '/banner' })
-}
-
-// 获取推荐歌单
-export const recommendSongsApi = () => {
-    return request<recommendRes>({ url: '/recommend/songs' })
->>>>>>> yds
 }

@@ -22,11 +22,7 @@ const request = <T>({
             method,
             data,
             header,
-<<<<<<< HEAD
-            success: (res: ReponseType<{}>) => {
-=======
             success: (res: ReponseType<T>) => {
->>>>>>> yds
                 resolve(res)
             },
             fail: reject

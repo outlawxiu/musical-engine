@@ -1,19 +1,22 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { recommendSongsApi } from '../services/index'
-import type { recommendRes, alItem } from '../services/type'
-const recommendSongs = ref<recommendRes[]>([])
+import type { recommendItem } from '../services/type'
+const recommendSongs = ref<recommendItem[]>([])
 recommendSongsApi().then(res => {
-    console.log(res.data.data.dailySongs)
     recommendSongs.value = res.data.data.dailySongs
 })
+const goRecommendList = () => {
+    uni.navigateTo({
+        url: '/pages/index/recommendlist'
+    });
+}
 </script>
-
 <template>
     <view class="daily-recommend">
-        <view class="recommend-title">
+        <view class="recommend-title" @click="goRecommendList">
             <text>💕每日推荐</text>
-            <image :src="recommendSongs[0].al.picUrl" alt="" />  
+            <image :src="recommendSongs[0]?.al.picUrl" alt="" />
         </view>
         <view class="heart-pattern">
             <text>❤️心动模式</text>
@@ -30,22 +33,31 @@ recommendSongsApi().then(res => {
 .daily-recommend {
     display: flex;
     overflow-x: auto;
-    &::-webkit-scrollbar { 
+    margin-bottom: 20px;
+    &::-webkit-scrollbar {
         display: none;
     }
-    .recommend-title ,.heart-pattern,.private-radar {
+
+    .recommend-title,
+    .heart-pattern,
+    .private-radar {
         position: relative;
         margin-right: 10px;
+
         text {
             position: absolute;
             z-index: 3;
+            color: #fff;
+            font-weight: 500;
         }
     }
 }
+
 image {
-    width: 150px;
-    height: 190px;
+    width: 120px;
+    height: 150px;
     border-radius: 20px;
     background: pink;
 }
+
 </style>
