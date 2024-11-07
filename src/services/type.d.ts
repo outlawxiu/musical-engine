@@ -54,8 +54,8 @@ export interface hotListRes {
     hotList: hotListItem[];
 }
 
-
-// 所有榜单  artistToplist 类型
+// 所有榜单 start
+//  artistToplist 类型
 export interface artistItem {
     first: string;
     third: number;
@@ -68,7 +68,7 @@ export interface artistToplist {
     artists: artistItem[]
 }
 
-// 所有榜单 list数据的类型
+//  list数据的类型
 interface listItemtrackItem {
     first: string;
     second: string;
@@ -81,7 +81,7 @@ export interface listItem {
 }
 
 
-// 所有榜单 rewardToplist 类型
+//  rewardToplist 类型
 export interface artistsItem {
     name: string;
     id:number;
@@ -109,8 +109,7 @@ export interface toplistRes {
     list: listItem[];
     rewardToplist: rewardToplist;
 }
-
-
+// 所有榜单 end
 
 
 // 心动模式
