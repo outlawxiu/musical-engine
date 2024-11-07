@@ -140,6 +140,10 @@ const swiperDotIndex = ref(0)
     top: 0;
     left: 0;
     padding: 20rpx;
+    /* #ifdef H5 */
+    padding: 100rpx 20rpx 20rpx 20rpx;
+    /* #endif */
+
     box-sizing: border-box;
     u-tab{
         display: flex;
