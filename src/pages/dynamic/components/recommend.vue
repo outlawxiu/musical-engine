@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import type { dynamicItem } from '../../../services/type';
 const dynamicList = defineModel<dynamicItem[]>();
-console.log(dynamicList.value);
+
 </script>
 
 <template>
@@ -22,44 +22,28 @@ console.log(dynamicList.value);
 
 <style lang="scss" scoped>
 .item {
-    min-height: 80px;
+    min-height: 160rpx;
     border-bottom: 1px solid #eee;
-    padding: 10px;
+    padding: 20rpx;
 
     .title {
         display: flex;
         align-items: center;
-        height: 50px;
-
+        height: 100rpx;
+        font-weight: bold;
+        font-size: 40rpx;
         image {
-            width: 50px;
-            height: 50px;
-            border: 1px solid #eee;
+            width: 100rpx;
+            height: 100rpx;
+            border: 2rpx solid #eee;
             border-radius: 50%;
-            margin-right: 15px;
+            margin-right: 30rpx;
         }
     }
 
     .content {
-        padding-left: 65px;
-    }
-
-    .pic {
-        margin-top: 10px;
-
-        image {
-            width: 80px;
-            height: 80px;
-            border: 1px solid #ccc;
-            margin-right: 4px;
-        }
-    }
-
-    .bar {
-        font-size: 14px;
-        color: #666;
-        display: flex;
-        justify-content: space-between;
+        font-size: 30rpx;
+        padding-left: 60rpx;
     }
 }
 </style>
