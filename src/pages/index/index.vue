@@ -5,7 +5,7 @@ import type { bannersItem, recommendPlaylistItem } from '../../services/type';
 
 import DailyRecommend from '../../components/DailyRecommend.vue'
 import Rankings from '../../components/Rankings.vue'
-
+import Player from "../../components/Player.vue";
 const greeting = ref('')
 const getGreeting = () => {
   const now = new Date();
@@ -82,6 +82,7 @@ const toSearch = () => {
     </view>
     <Rankings  />
   </view>
+  <Player></Player>
 </template>
 <style lang="scss" scoped>
 .title {
