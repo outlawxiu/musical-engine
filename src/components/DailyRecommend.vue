@@ -12,10 +12,7 @@ const goRecommendList = () => {
         url: '/pages/index/recommendlist'
     });
 }
-const heart = ref<flutterListItem[]>([])
-flutterApi().then(res => {
-    heart.value = res
-})
+
 </script>
 <template>
     <view class="daily-recommend">
