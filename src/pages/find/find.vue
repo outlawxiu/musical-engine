@@ -1,18 +1,3 @@
-<!-- <script setup lang='ts'>
-
-</script>
-
-<template>
-    <div>
-        <uni-list>
-            <uni-list-item :show-switch="true" title="123"/>
-        </uni-list>
-    </div>
-</template>
-
-<style lang="scss" scoped>
-
-</style> -->
 <template>
     <view class="tab-container">
       <!-- Tab 栏 -->
@@ -51,7 +36,6 @@
   
 <script lang='ts' setup>
 import { getBannersApi } from '@/service';
-// import { getHotApi } from '@/service';
 import { ref} from 'vue'
 import slideBox from '@/components/slideBox.vue';
 import { getMusicList } from '@/service'
@@ -68,7 +52,6 @@ const getBanners = async () => {
         console.log(error)
     }
 }
-
 const list = ref<AnyObject>([])
 const getMusicListData = async () => {
   try {
@@ -79,19 +62,7 @@ const getMusicListData = async () => {
   }
 }
 getMusicListData()
-
 getBanners()
-// const getList = async () => {
-//     try {
-//         const res = await getHotApi()
-//         tabs.value = res.data
-//         console.log(res.data);
-        
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-// getList()
 const tabChange = (index: number) => {
     current.value = index;
 }
