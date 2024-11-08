@@ -1,9 +1,10 @@
 <template>
   <div class="whole">
     我的
+
+    <img :src="userInfo.profile?.avatarUrl" alt="">
     <view @click="toLogin">去登陆</view>
   </div>
-
   <Player></Player>
 </template>
 
@@ -11,24 +12,21 @@
 import { reactive, ref } from "vue";
 import { getAccountInfo } from "../../services/index";
 import Player from "../../components/Player.vue";
-const userInfo = ref({});
-
+import { useUserInfoStore } from "../../store/userInfo";
+const user = useUserInfoStore();
+const userInfo = ref(user.userInfo);
+console.log(userInfo.value);
 const getInfo = () => {
   uni.getStorage({
     key: "userInfo",
     success: function (res) {
-      const cookie = JSON.parse(res.data).cookie
+      const cookies = JSON.parse(res.data).cookie;
       // console.log(decodeURIComponent(cookie));
+      getAccountInfo(cookies)
     },
   });
-  getAccountInfo()
-  .then( res => {
-    // console.log(res);
-    
-  })
-
 };
-getInfo()
+getInfo();
 
 const toLogin = () => {
   uni.navigateTo({
@@ -38,7 +36,7 @@ const toLogin = () => {
 </script>
 
 <style lang="scss" scoped>
-.whole{
+.whole {
   height: 100vh;
   width: 100vw;
   background: pink;
@@ -46,5 +44,4 @@ const toLogin = () => {
   height: calc(100vh - 188rpx);
   // #endif
 }
-
 </style>

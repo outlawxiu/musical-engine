@@ -37,7 +37,6 @@ import { reactive, ref } from "vue";
 import { usePlayerStore } from "../store/musicPlayer";
 import MusicPlayer from "../components/MusicPlayer.vue";
 const playerStore = usePlayerStore();
-
 //telport 会在任意页面显示 这有问题
 </script>
 

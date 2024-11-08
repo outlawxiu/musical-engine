@@ -24,4 +24,13 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://zyxcl.xyz/music/api', // 后端 API 地址
+        changeOrigin: true, // 修改源
+        rewrite: (path) => path.replace(/^\/api/, ''), // 重写路径
+      },
+    },
+  },
 });

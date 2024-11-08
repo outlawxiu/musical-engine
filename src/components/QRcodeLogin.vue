@@ -16,7 +16,9 @@
 import { onMounted, onUnmounted, reactive, ref } from "vue";
 import { getKey, getQR, canLogin } from "../services/index";
 import { onShow, onHide } from "@dcloudio/uni-app";
-
+uni.request({
+  url: "/api/login/refresh"
+});
 const timer = ref(0);
 const obj = {};
 onHide(() => {
@@ -48,6 +50,9 @@ getKey().then((res) => {
                 url: "/pages/index/index",
               });
             },
+          });
+          uni.request({
+            url: "/api/login/refresh",
           });
           clearInterval(timer.value!);
         }

@@ -1,5 +1,6 @@
 import request from "./request";
-
+import { useUserInfoStore } from "../store/userInfo";
+const userInfoStore = useUserInfoStore();
 import type {
   bannersRes,
   recommendRes,
@@ -47,13 +48,13 @@ export const playlistDetailApi = (id: string) => {
 
 // 播放歌曲
 export const playMusicApi = (id: string) => {
-    return request<playMusicRes>({
-        url: '/song/url',
-        data: {
-            id
-        }
-    })
-}
+  return request<playMusicRes>({
+    url: "/song/url",
+    data: {
+      id,
+    },
+  });
+};
 
 // 热搜列表
 export const searchHotApi = () => {
@@ -141,11 +142,25 @@ export const getQR = (key: string) => {
 };
 
 // 获取账号信息
-export const getAccountInfo = () => {
-  return request({
-    url: "/user/account",
+export const getAccountInfo = (cookie: string) => {
+  uni.request({
+    url: "/api/user/account", 
+    method: "POST",
+    data: {
+      cookie
+    },
+    success: (res) => {
+      userInfoStore.userInfo = res.data;
+      const { account , profile } = res.data;
+      const detailInfo =  { account , profile };
+      uni.setStorageSync('detailInfo', JSON.stringify(detailInfo));
+    },
+    fail: (err) => {
+      console.log(err);
+    }
   });
 };
+
 //排行榜
 export const topListApi = (id: number) => {
   return request({
