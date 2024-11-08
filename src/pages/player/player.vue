@@ -44,7 +44,6 @@ innerAudioContext.onPlay(() => {
   show.value = true
 })
 
-
 const next = () => {
   if(curId.value >= length.value) {
     curId.value = 0
