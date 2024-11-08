@@ -10,12 +10,10 @@ const prop = defineProps({
 const playCount = (num: number) => {
   return num > 10000? (num / 10000).toFixed(1) + '万' : num
 }
-const turnToList = (id: string) => {
-  uni.navigateTo({
-    url: '/pages/player/player?id='+ id
-  });
-}
 const turnTo = (id: string) => {
+  console.log('点击播放');
+}
+const turnToList = (id: string) => {
   uni.navigateTo({
     url: '/pages/index/recommendlistdetail?id='+ id
   });
@@ -33,10 +31,10 @@ interface item {
   <scroll-view class="box" scroll-x show-scrollbar="false">
     <view class="slideBox">
       <view class="slideBox-item" v-for="(item, index) in list" :key="index">
-        <view class="mList" @click.stop="turnTo(item.id)">
+        <view class="mList" @click="turnToList(item.id)">
           <image :src="item.coverImgUrl" class="mListPic" mode="widthFix"></image>
           <view class="playCount">{{ playCount(item.playCount) }}</view>
-          <view class="playBtn" @click.prevent="turnToList(item.id)"></view>
+          <view class="playBtn" @click.stop="turnTo(item.id)"></view>
         </view>
         <view class="descript">{{ item.name }}</view>
       </view>
