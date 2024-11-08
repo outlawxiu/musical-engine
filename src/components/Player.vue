@@ -40,9 +40,6 @@ import { reactive, ref } from "vue";
 import { usePlayerStore } from "../store/musicPlayer";
 import MusicPlayer from "../components/MusicPlayer.vue";
 const playerStore = usePlayerStore();
-<<<<<<< HEAD
-//telport 会在任意页面显示 这有问题
-=======
 
 const changePlayerStoreStatus = () => {
   playerStore.playerStatus = !playerStore.playerStatus;
@@ -66,7 +63,6 @@ const changePlayerMusic = (item, index) =>{
 
 
 
->>>>>>> 46f23043190840bd27140e2d3e67a25f72241196
 </script>
 
 <style lang="scss" scoped>

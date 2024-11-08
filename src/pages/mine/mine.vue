@@ -14,8 +14,9 @@ import { getAccountInfo } from "../../services/index";
 import Player from "../../components/Player.vue";
 import { useUserInfoStore } from "../../store/userInfo";
 const user = useUserInfoStore();
-const userInfo = ref(user.userInfo);
+const userInfo = ref(uni.getStorageSync("userInfo") ? JSON.parse(uni.getStorageSync("detailInfo")) : user.detailInfo);
 console.log(userInfo.value);
+
 const getInfo = () => {
   uni.getStorage({
     key: "userInfo",
