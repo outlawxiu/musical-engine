@@ -10,7 +10,8 @@ interface Song {
 export const usePlayMusicStore = defineStore("playMusic", () => {
     const isPlaying = ref(false);
     const currentSong = ref({});
-
+    //播放列表
+    const playList = ref([]);
     const play = (song: Song) =>{
         const audio = getPlayer();
         audio.src = song.url;
@@ -23,6 +24,7 @@ export const usePlayMusicStore = defineStore("playMusic", () => {
         audio.pause();
         isPlaying.value = false;
     }
+    
     return {
         isPlaying,
         currentSong,
