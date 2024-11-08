@@ -1,9 +1,7 @@
 <template>
   <div class="whole">
-    我的
-
-    <img :src="userInfo.profile?.avatarUrl" alt="">
-    <view @click="toLogin">去登陆</view>
+    <img :src="userInfo.profile?.avatarUrl" class="avatar" />
+    <view @click="toLogin">立即登录></view>
   </div>
   <Player></Player>
 </template>
@@ -40,7 +38,8 @@ const toLogin = () => {
 .whole {
   height: 100vh;
   width: 100vw;
-  background: pink;
+  background: url("http://p1.music.126.net/2zSNIqTcpHL2jIvU6hG0EA==/109951162868128395.jpg") no-repeat;
+  background-size: contain;
   // #ifdef WEB
   height: calc(100vh - 188rpx);
   // #endif
