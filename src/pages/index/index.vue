@@ -2,10 +2,9 @@
 import { onMounted, ref } from 'vue'
 import { getBannerApi, recommendPlaylistApi } from '../../services/index';
 import type { bannersItem, recommendPlaylistItem } from '../../services/type';
-
+import Player from '@/components/Player.vue';
 import DailyRecommend from '../../components/DailyRecommend.vue'
 import Rankings from '../../components/Rankings.vue'
-import Player from "../../components/Player.vue";
 const greeting = ref('')
 const getGreeting = () => {
   const now = new Date();
@@ -81,6 +80,7 @@ const toSearch = () => {
       </view>
     </view>
     <Rankings  />
+    <Player />
   </view>
   <Player></Player>
 </template>

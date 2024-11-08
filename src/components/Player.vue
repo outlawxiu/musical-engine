@@ -29,14 +29,11 @@
         </view>
       </div>
     </div>
-    <MusicPlayer>
-
-    </MusicPlayer>
+    <MusicPlayer />
   </Teleport>
-    <!-- #endif -->
+  <!-- #endif -->
 </template>
 <script setup lang="ts">
-import { reactive, ref } from "vue";
 import { usePlayerStore } from "../store/musicPlayer";
 import MusicPlayer from "../components/MusicPlayer.vue";
 const playerStore = usePlayerStore();
