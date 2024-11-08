@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import type { listItem, playMusicItem } from '../../services/type';
+import type { playlist } from '../../services/type';
 import { playlistDetailApi, playMusicApi } from '../../services/index';
 
 import { onLoad } from '@dcloudio/uni-app';
-const recommendListDetail = ref<listItem[]>([]);
+const recommendListDetail = ref<playlist>({});
+
 onLoad((option) => {
     playlistDetailApi(option.id).then(res => {
         recommendListDetail.value = res.data.playlist;
@@ -41,7 +42,7 @@ innerAudioContext.onError((res) => {
                 <text>{{ recommendListDetail.name }}</text>
                 <view class="creator">
                     <image :src="recommendListDetail?.creator?.avatarUrl" alt="" class="avatar" />
-                    <text class="nickname">{{ recommendListDetail.creator.nickname }}</text>
+                    <text class="nickname">{{ recommendListDetail?.creator?.nickname }}</text>
                 </view>
                 <view class="btn">
                     <button size="mini" v-for="(item, idx) in recommendListDetail.tags" :key="idx">{{ item }}</button>
