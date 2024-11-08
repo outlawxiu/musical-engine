@@ -1,17 +1,6 @@
 <script lang="ts" setup>
 import Rankings from '@/components/Rankings.vue';
-import { topListDetailApi } from '../../services/index'
-import { ref } from 'vue';
-import { onLoad } from '@dcloudio/uni-app';
-const topListDetail = ref([]);
 
-onLoad((option) => {
-    topListDetailApi(option.id).then(res => {
-        topListDetail.value = res.data.list;
-        console.log(res.data);
-    })
-    console.log(id);
-})
 </script>
 
 <template>
