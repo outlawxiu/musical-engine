@@ -1,1 +1,0 @@
-import{d as a,o as s,c as e,w as t,f as o,b as p}from"./index-CPqqXbiz.js";import{_ as r}from"./plugin-vueexport-helper.BCo6x5W8.js";const d=r(a({__name:"playmusic",setup:a=>(a,r)=>{const d=o;return s(),e(d,null,{default:t((()=>[p(" 播放页面 ")])),_:1})}}),[["__scopeId","data-v-814dd75a"]]);export{d as default};
