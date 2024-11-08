@@ -13,10 +13,6 @@ const getInfo = () => {
     key: "userInfo",
     success: function (res) {
       const cookie = JSON.parse(res.data).cookie
-<<<<<<< HEAD
-      // console.log(decodeURIComponent(cookie));
-=======
->>>>>>> 0717
     },
   });
   getAccountInfo()
