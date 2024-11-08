@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
-import { getMusicList } from '@/service'
-
 
 const prop = defineProps({
   list: {
@@ -39,7 +36,7 @@ interface item {
         <view class="mList" @click.stop="turnTo(item.id)">
           <image :src="item.coverImgUrl" class="mListPic" mode="widthFix"></image>
           <view class="playCount">{{ playCount(item.playCount) }}</view>
-          <view class="playBtn" @click.self="turnToList(item.id)"></view>
+          <view class="playBtn" @click.prevent="turnToList(item.id)"></view>
         </view>
         <view class="descript">{{ item.name }}</view>
       </view>

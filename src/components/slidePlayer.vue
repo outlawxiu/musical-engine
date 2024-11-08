@@ -6,9 +6,7 @@ const list = ref<AnyObject>([])
 const getNewList = async () => {
   try {
     const res = await getHotApi()
-    // list.value = res.data
-    console.log(res.data);
-    
+    list.value = res.data
   } catch (error) {
     console.log(error)
   }
