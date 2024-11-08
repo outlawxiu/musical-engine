@@ -150,9 +150,9 @@ export const getAccountInfo = (cookie: string) => {
       cookie
     },
     success: (res) => {
-      userInfoStore.userInfo = res.data;
       const { account , profile } = res.data;
       const detailInfo =  { account , profile };
+      userInfoStore.detailInfo = detailInfo
       uni.setStorageSync('detailInfo', JSON.stringify(detailInfo));
     },
     fail: (err) => {
