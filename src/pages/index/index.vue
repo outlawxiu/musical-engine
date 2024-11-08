@@ -38,6 +38,7 @@ const goRecommendDetail = (id: number) => {
 const toSearch = () => {
   uni.navigateTo({ url: "/pages/search/search" });
 };
+
 </script>
 <template>
   <view class="content">
@@ -79,7 +80,7 @@ const toSearch = () => {
         </view>
       </view>
     </view>
-    <Rankings />
+    <Rankings  />
   </view>
 </template>
 <style lang="scss" scoped>

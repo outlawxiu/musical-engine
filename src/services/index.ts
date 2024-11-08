@@ -152,6 +152,12 @@ export const topListApi = () => {
     url: "/toplist"
   });
 };
+//排行榜详情列表
+export const topDeatilApi = () => {
+  return request({
+    url: "/toplist/detail"
+  });
+}
 //排行榜详情
 export const topListDetailApi = (id: number) => {
   return request({

@@ -7,9 +7,8 @@ import { onLoad } from '@dcloudio/uni-app';
 const recommendListDetail = ref<playlist>({});
 
 onLoad((option) => {
-    playlistDetailApi(option.id).then(res => {
+    playlistDetailApi(option?.id).then(res => {
         recommendListDetail.value = res.data.playlist;
-        console.log(1111 ,res.data.playlist);
     })
 })
 const innerAudioContext = uni.createInnerAudioContext();
