@@ -1,17 +1,36 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import type { listItem } from '../../services/type';
-import { playlistDetailApi } from '../../services/index';
+import type { listItem, playMusicItem } from '../../services/type';
+import { playlistDetailApi, playMusicApi } from '../../services/index';
 
 import { onLoad } from '@dcloudio/uni-app';
 const recommendListDetail = ref<listItem[]>([]);
 onLoad((option) => {
     playlistDetailApi(option.id).then(res => {
         recommendListDetail.value = res.data.playlist;
-        console.log(res.data.playlist);
+        console.log(1111 ,res.data.playlist);
     })
-    // console.log(option.id)
 })
+const innerAudioContext = uni.createInnerAudioContext();
+
+const playMusic = (item:string) => {
+    playMusicApi(item).then(res => {
+        console.log(res.data.data[0].url);
+        innerAudioContext.autoplay = true;
+        innerAudioContext.src = res.data.data[0].url;
+    })
+}
+
+innerAudioContext.onPlay(() => {
+    console.log('开始播放');
+});
+innerAudioContext.onError((res) => {
+    console.log(res.errMsg);
+    console.log(res.errCode);
+});
+
+
+
 </script>
 
 <template>
@@ -34,12 +53,13 @@ onLoad((option) => {
             <text class="id">
                 {{ idx + 1 }}
             </text>
-            <view class="song" style="display: flex; flex-direction: column;">
-                <text class="name">{{ item.name }}</text>
-                <text class="artists">{{ item.ar.map(item => item.name).join('、') }}</text>
+                <view class="song" style="display: flex; flex-direction: column;" @click="playMusic(item.id)">
+                    <text class="name">{{ item.name }}</text>
+                    <text class="artists">{{ item.ar.map(item => item.name).join('、') }}</text>
+                </view>
+
             </view>
         </view>
-    </view>
 </template>
 
 <style lang="scss" scoped>
