@@ -184,7 +184,7 @@ export interface recommendPlaylistItem {
 }
 
 
-// 动态页数据
+// 动态页 推荐的动态数据
 interface picsItem {
     format: string;
     height: number;
@@ -217,8 +217,7 @@ interface tailMarkItem {
         postCount: string;
     }
 }
-
- export interface dynamicItem {
+ export interface dynamicRecommendItem {
     id:number;
     actId: number;
     actName: string;
@@ -230,7 +229,28 @@ interface tailMarkItem {
     json: string;
 }
 
-export interface dynamicRes {
+export interface dynamicRecommendRes {
     code: number;
-    events: dynamicItem[];
+    events: dynamicRecommendItem[];
+}
+
+
+// 推荐页面 关注的类型
+interface followTypeItemObj{
+    iconUrl: string;
+}
+interface followTypeItem {
+    associator: followTypeItemObj;
+}
+export interface followItem {
+    avatarUrl: string;
+    nickname: string;
+    signature: string | null;
+    time: number;
+    userId: number;
+    vipRights: followTypeItem;
+}
+export interface followRes {
+    code: number;
+    followeds: followItem[];
 }

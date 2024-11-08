@@ -1,13 +1,13 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
-import type { dynamicItem } from '../../../services/type';
-const dynamicList = defineModel<dynamicItem[]>();
+import type { dynamicRecommendItem } from '../../../services/type';
+const recommendList = defineModel<dynamicRecommendItem[]>();
 
 </script>
 
 <template>
     <view class="recommend-content">
-        <view v-for="(item, index) in dynamicList" :key="index" class="item">
+        <view v-for="(item, index) in recommendList" :key="index" class="item">
 
             <view>
                 <image mode="widthFix" :src="item.user.avatarUrl" class="pic" />
