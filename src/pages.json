@@ -28,6 +28,13 @@
 			}
 		},
 		{
+			"path": "pages/index/TopListDetail",
+			"style": {
+				"navigationBarTitleText": "排行榜详情",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/roam/roam",
 			"style": {
 				"navigationBarTitleText": "网易云漫游",
