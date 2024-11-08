@@ -12,7 +12,6 @@
           @click="changePlayerStoreStatus" />
         <uni-icons type="list" size="30" @click="playerStore.showList = true">
         </uni-icons>
-
       </div>
     </div>
     <div class="playerListDialog" v-if="playerStore.showList" @click.self="playerStore.showList = false">
@@ -21,8 +20,9 @@
         <view class="allMusic">
           <!-- <view v-for="item in playerStore.playList" :key="item" class="musicItem">
           </view> -->
-          <view v-for="(item, index) in playerStore.playList" :key="item.url" class="musicItem" @click="changePlayerMusic(item, index)">
-            <view>{{ item.name }}</view> 
+          <view v-for="(item, index) in playerStore.playList" :key="item.url" class="musicItem"
+            @click="changePlayerMusic(item, index)">
+            <view>{{ item.name }}</view>
             <view v-if="index === playerStore.currentIndex">正在播放</view>
           </view>
         </view>
@@ -41,21 +41,20 @@ const playerStore = usePlayerStore();
 
 const changePlayerStoreStatus = () => {
   playerStore.playerStatus = !playerStore.playerStatus;
-
   playerStore.changeplayerStatus()
 
 }
 // 跳到动态页面
-const goToDynamic = () =>{
+const goToDynamic = () => {
   uni.navigateTo({
     url: '/pages/playmusic/playmusic'
   });
 }
 
 // 切换播放音乐
-const changePlayerMusic = (item, index) =>{
+const changePlayerMusic = (item, index) => {
   // playerStore.showList = false;
-  console.log(item, index,'正在勃发');
+  console.log(item, index, '正在勃发');
   playerStore.currentIndex = index;
 }
 
@@ -81,26 +80,31 @@ const changePlayerMusic = (item, index) =>{
   border-top: 4rpx solid #eee;
   border-bottom: 4rpx solid #eee;
 }
-.logo-music{
+
+.logo-music {
   width: 60rpx;
   height: 60rpx;
   margin-right: 20rpx;
 }
-.playImg{
+
+.playImg {
   width: 40rpx;
   height: 40rpx;
   margin-right: 30rpx;
   margin-left: 30rpx;
 }
+
 .playerInfo {
   flex: 1;
   height: 100%;
   display: flex;
   align-items: center;
 }
+
 .listIcon {
   height: 100%;
 }
+
 .playerListDialog {
   position: fixed;
   bottom: 100rpx;
@@ -112,6 +116,7 @@ const changePlayerMusic = (item, index) =>{
   right: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+
 .playerList {
   position: absolute;
   max-height: 700rpx;
@@ -123,20 +128,23 @@ const changePlayerMusic = (item, index) =>{
   display: flex;
   flex-direction: column;
 }
-.tip{
+
+.tip {
   height: 100rpx;
   line-height: 100rpx;
   padding: 0 20rpx;
   background: #eee;
 }
+
 .allMusic {
   overflow-y: auto;
 }
+
 .musicItem {
   height: 100rpx;
   line-height: 100rpx;
   padding: 0 40rpx;
   border-bottom: 2rpx solid #eee;
-  display:flex;
+  display: flex;
 }
 </style>

@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
 import { usePlayerStore } from "../store/musicPlayer";
 const playerStore = usePlayerStore();
 </script>
@@ -24,8 +23,5 @@ const playerStore = usePlayerStore();
   bottom: 100rpx;
   // #endif
   z-index: 6;
-}
-.close{
-  
 }
 </style>
