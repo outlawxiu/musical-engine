@@ -6,7 +6,6 @@ const toplistDetail = ref([])
 onLoad((option) => {
    topListDetailApi(option.id).then(res => {
       toplistDetail.value = res.data.playlist
-      // console.log(res.data.playlist);
    })
    // console.log(option.id)
 })

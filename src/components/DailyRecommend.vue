@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { recommendSongsApi } from '../services/index'
-import type { recommendItem } from '../services/type'
+import { recommendSongsApi, flutterApi } from '../services/index'
+import type { recommendItem, flutterListItem } from '../services/type'
 const recommendSongs = ref<recommendItem[]>([])
 recommendSongsApi().then(res => {
     recommendSongs.value = res.data.data.dailySongs
@@ -12,6 +12,7 @@ const goRecommendList = () => {
         url: '/pages/index/recommendlist'
     });
 }
+
 </script>
 <template>
     <view class="daily-recommend">
