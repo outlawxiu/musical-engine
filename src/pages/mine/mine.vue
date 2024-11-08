@@ -3,10 +3,9 @@
     <img class="bg" :src="userInfo.profile?.backgroundUrl" />
     <img :src="userInfo.profile?.avatarUrl" class="avatar" />
     <view class="toLogin" @click="toLogin">立即登录></view>
-    <text class="nickname">{{userInfo.profile?.nickname}}</text>
-    <text class="signature">{{userInfo.profile?.signature}}</text>
-    <view class="detail">
-    </view>
+    <text class="nickname">{{ userInfo.profile?.nickname }}</text>
+    <text class="signature">{{ userInfo.profile?.signature }}</text>
+    <view class="detail"> </view>
   </div>
 </template>
 
@@ -15,12 +14,27 @@ import { reactive, ref } from "vue";
 import { getAccountInfo } from "../../services/index";
 import Player from "../../components/Player.vue";
 import { useUserInfoStore } from "../../store/userInfo";
+import { onHide, onShow } from "@dcloudio/uni-app";
+
 const user = useUserInfoStore();
 const userInfo = ref(
-  uni.getStorageSync("userInfo")
+  uni.getStorageSync("detailInfo")
     ? JSON.parse(uni.getStorageSync("detailInfo"))
     : user.detailInfo
 );
+
+onShow(() => {
+  getInfo();
+  userInfo.value = uni.getStorageSync("detailInfo")
+    ? JSON.parse(uni.getStorageSync("detailInfo"))
+    : user.detailInfo;
+});
+onHide(() => {
+  getInfo();
+  userInfo.value = uni.getStorageSync("detailInfo")
+    ? JSON.parse(uni.getStorageSync("detailInfo"))
+    : user.detailInfo;
+});
 console.log(userInfo.value);
 
 const getInfo = () => {
@@ -28,7 +42,6 @@ const getInfo = () => {
     key: "userInfo",
     success: function (res) {
       const cookies = JSON.parse(res.data).cookie;
-      // console.log(decodeURIComponent(cookie));
       getAccountInfo(cookies);
     },
   });
@@ -65,25 +78,26 @@ const toLogin = () => {
   box-shadow: 0 0 10px #999;
 }
 
-.toLogin{
-  color: white;
+.toLogin {
+  color: rgb(0, 0, 0, 0.5);
 }
 
 .bg {
   position: absolute;
+  width: 100%;
+  height: 700rpx;
   top: 0;
   left: 0;
   right: 0;
   z-index: -1;
 }
-.nickname{
+.nickname {
   color: white;
   font-size: 50rpx;
   margin: 50rpx 0;
 }
-.signature{
+.signature {
   color: white;
   font-size: 30rpx;
 }
-
 </style>
