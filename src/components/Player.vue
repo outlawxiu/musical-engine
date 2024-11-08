@@ -1,4 +1,5 @@
 <template>
+  <!-- #ifdef WEB -->
   <Teleport to="body" :disabled="playerStore.show">
     <div class="player">
       <div class="playerInfo"></div>
@@ -29,6 +30,7 @@
 
     </MusicPlayer>
   </Teleport>
+    <!-- #endif -->
 </template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
