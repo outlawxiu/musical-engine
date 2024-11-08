@@ -78,6 +78,9 @@ export interface listItem {
     name: string;
     coverImgUrl: string;
     coverImgId: number;
+    creator?: string;
+    name: string;
+    coverImgUrl: string;
     tracks: listItemtrackItem[];
 }
 
@@ -127,6 +130,7 @@ export interface playlist{
     coverImgUrl: string;
     createTime: number;
     name:string;
+    creator: creatorItem;
     playlistType:number;
     tags:string[];
     tracks: tracksItem[]
