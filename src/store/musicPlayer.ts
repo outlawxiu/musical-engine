@@ -1,3 +1,4 @@
+
 import { defineStore } from "pinia";
 import { ref, watch } from "vue";
 // import { playMusicApi } from '../service/index'
@@ -12,8 +13,10 @@ export const usePlayerStore = defineStore("player", () => {
     { name: "单曲循环", value: "single" },
     { name: "随机播放", value: "random" },
   ]);
+ 
   //播放列表
   const playList = ref([{
+    id: 488388942,
     poster: 'https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/music-a.png',
     name: "致爱丽丝 - 稻香",
     author: "周杰伦",
@@ -37,7 +40,7 @@ export const usePlayerStore = defineStore("player", () => {
   const volume = ref(1);
 
   // 设置路径
-  innerAudioContext.src = currentMusic.value =  playList.value[0].url;
+  innerAudioContext.src =  playList.value[0].url;
 
   // 切换改变flag的状态
   const changeplayerStatus = () =>{
@@ -50,13 +53,16 @@ export const usePlayerStore = defineStore("player", () => {
   }
 
 
-  // watch( detailId, () =>{
-  //   playMusicApi({ id: detailId.value }).then(res => {
-  //     console.log(res)
-  //   })
-  // })
+
+  watch(playList, () =>{
+    currentIndex.value = 0;
+    currentMusic.value = playList.value[0].url;
+  })
+  watch(currentIndex, () => {
+    currentMusic.value = playList.value[currentIndex.value].url;
+  })
   // 初始化播放器
-  // watch(currentMusic, () => innerAudioContext.src = currentMusic.value, { immediate: true })
+  watch(currentMusic, () => innerAudioContext.src = currentMusic.value, { immediate: true })
   
   return {
     playList,

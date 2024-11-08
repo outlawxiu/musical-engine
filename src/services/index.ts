@@ -46,7 +46,7 @@ export const playlistDetailApi = (id: string) => {
 };
 
 // 播放歌曲
-export const playMusicApi = (id: string) => {
+export const playMusicApi = (id: number) => {
     return request<playMusicRes>({
         url: '/song/url',
         data: {

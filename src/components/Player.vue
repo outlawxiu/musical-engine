@@ -21,7 +21,9 @@
         <view class="allMusic">
           <!-- <view v-for="item in playerStore.playList" :key="item" class="musicItem">
           </view> -->
-          <view v-for="item in playerStore.playList" :key="item.url" class="musicItem" @click="changePlayerMusic(item)">{{ item.name }}
+          <view v-for="(item, index) in playerStore.playList" :key="item.url" class="musicItem" @click="changePlayerMusic(item, index)">
+            <view>{{ item.name }}</view> 
+            <view v-if="index === playerStore.currentIndex">正在播放</view>
           </view>
         </view>
       </div>
@@ -45,14 +47,16 @@ const changePlayerStoreStatus = () => {
 }
 // 跳到动态页面
 const goToDynamic = () =>{
-  uni.switchTab({
-    url: '/pages/find/find'
+  uni.navigateTo({
+    url: '/pages/playmusic/playmusic'
   });
 }
 
 // 切换播放音乐
-const changePlayerMusic = (item) =>{
-  console.log(item, '正在勃发')
+const changePlayerMusic = (item, index) =>{
+  // playerStore.showList = false;
+  console.log(item, index,'正在勃发');
+  playerStore.currentIndex = index;
 }
 
 
@@ -75,6 +79,7 @@ const changePlayerMusic = (item) =>{
   align-items: center;
   line-height: 90rpx;
   border-top: 4rpx solid #eee;
+  border-bottom: 4rpx solid #eee;
 }
 .logo-music{
   width: 60rpx;
@@ -132,5 +137,6 @@ const changePlayerMusic = (item) =>{
   line-height: 100rpx;
   padding: 0 40rpx;
   border-bottom: 2rpx solid #eee;
+  display:flex;
 }
 </style>
