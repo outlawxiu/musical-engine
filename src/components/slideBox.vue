@@ -13,12 +13,12 @@ const prop = defineProps({
 const playCount = (num: number) => {
   return num > 10000? (num / 10000).toFixed(1) + '万' : num
 }
-const turnTo = (id: string) => {
+const turnToList = (id: string) => {
   uni.navigateTo({
     url: '/pages/player/player?id='+ id
   });
 }
-const turnToList = (id: string) => {
+const turnTo = (id: string) => {
   uni.navigateTo({
     url: '/pages/index/recommendlistdetail?id='+ id
   });

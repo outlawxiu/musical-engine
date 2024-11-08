@@ -10,25 +10,14 @@ onLoad((option) => {
         recommendListDetail.value = res.data.playlist;
         console.log(1111 ,res.data.playlist);
     })
-    // console.log(option.id)
 })
 const innerAudioContext = uni.createInnerAudioContext();
-if (innerAudioContext) {
-    try {
-        innerAudioContext.pause();
-        innerAudioContext.destroy()
-        innerAudioContext = null
-    } catch (e) {
-        //TODO handle the exception
-    }
-}
-const playMusic = (item: playMusicItem) => {
-    
-    playMusicApi(33894312).then(res => {
+
+const playMusic = (item:string) => {
+    playMusicApi(item).then(res => {
         console.log(res.data.data[0].url);
         innerAudioContext.autoplay = true;
         innerAudioContext.src = res.data.data[0].url;
-        
     })
 }
 
