@@ -147,10 +147,9 @@ export const getAccountInfo = () => {
   });
 };
 //排行榜
-export const topListApi = (id: number) => {
+export const topListApi = () => {
   return request({
-    url: "/toplist",
-    data: { id },
+    url: "/toplist"
   });
 };
 //排行榜详情
