@@ -48,13 +48,13 @@ export const playlistDetailApi = (id: string) => {
 
 // 播放歌曲
 export const playMusicApi = (id: string) => {
-  return request<playMusicRes>({
-    url: "/song/url",
-    data: {
-      id,
-    },
-  });
-};
+    return request<playMusicRes>({
+        url: '/song/url',
+        data: {
+            id
+        }
+    })
+}
 
 // 热搜列表
 export const searchHotApi = () => {
@@ -162,12 +162,17 @@ export const getAccountInfo = (cookie: string) => {
 };
 
 //排行榜
-export const topListApi = (id: number) => {
+export const topListApi = () => {
   return request({
-    url: "/toplist",
-    data: { id },
+    url: "/toplist"
   });
 };
+//排行榜详情列表
+export const topDeatilApi = () => {
+  return request({
+    url: "/toplist/detail"
+  });
+}
 //排行榜详情
 export const topListDetailApi = (id: number) => {
   return request({

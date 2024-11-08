@@ -13,14 +13,17 @@ const formatPlayCount = (playCount: number) => {
 }
 topListApi().then(res => {
     topList.value = res.data.list
-    console.log(res.data.list)
 })
 const goTopList = () => {
     uni.navigateTo({
         url: `/pages/find/toplist`
-    })
-    // console.log(id)
+    })   
 }
+const goTopListDetail = (id: number) => {
+    uni.navigateTo({
+        url: '/pages/index/TopListDetail?id=' + id
+    })
+};
 </script>
 
 <template>

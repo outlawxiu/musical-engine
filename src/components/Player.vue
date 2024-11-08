@@ -2,26 +2,29 @@
   <!-- #ifdef WEB -->
   <Teleport to="body" :disabled="playerStore.show">
     <div class="player">
-      <div class="playerInfo"></div>
-      <div class="playIcon"  @click="playerStore.isDetail = true">播放图标</div>
-      <div class="listIcon" @click="playerStore.showList = true">列表图标</div>
+      <div class="playerInfo" @click="goToDynamic">
+        <image class="logo-music" src="../static/disc-BpXxhfCl.png" />
+        {{ playerStore.playList[playerStore.currentIndex].name }}
+      </div>
+      <div class="playIcon">
+        <image class="playImg" v-if="playerStore.playerStatus" src="../static/zanting.png"
+          @click="changePlayerStoreStatus" />
+        <image class="playImg" v-else="playerStore.playerStatus" src="../static/bofang.png"
+          @click="changePlayerStoreStatus" />
+        <uni-icons type="list" size="30" @click="playerStore.showList = true">
+        </uni-icons>
+
+      </div>
     </div>
-    <div
-      class="playerListDialog"
-      v-if="playerStore.showList"
-      @click="playerStore.showList = false"
-    >
+    <div class="playerListDialog" v-if="playerStore.showList" @click.self="playerStore.showList = false">
       <div class="playerList">
         <view class="tip">播放列表</view>
         <view class="allMusic">
-          <view
-            v-for="item in playerStore.playList"
-            :key="item"
-            class="musicItem"
-          >
-          </view>
-          <view v-for="item in 10" :key="item" class="musicItem"
-            >{{ item }}
+          <!-- <view v-for="item in playerStore.playList" :key="item" class="musicItem">
+          </view> -->
+          <view v-for="(item, index) in playerStore.playList" :key="item.url" class="musicItem" @click="changePlayerMusic(item, index)">
+            <view>{{ item.name }}</view> 
+            <view v-if="index === playerStore.currentIndex">正在播放</view>
           </view>
         </view>
       </div>
@@ -37,7 +40,33 @@ import { reactive, ref } from "vue";
 import { usePlayerStore } from "../store/musicPlayer";
 import MusicPlayer from "../components/MusicPlayer.vue";
 const playerStore = usePlayerStore();
+<<<<<<< HEAD
 //telport 会在任意页面显示 这有问题
+=======
+
+const changePlayerStoreStatus = () => {
+  playerStore.playerStatus = !playerStore.playerStatus;
+
+  playerStore.changeplayerStatus()
+
+}
+// 跳到动态页面
+const goToDynamic = () =>{
+  uni.navigateTo({
+    url: '/pages/playmusic/playmusic'
+  });
+}
+
+// 切换播放音乐
+const changePlayerMusic = (item, index) =>{
+  // playerStore.showList = false;
+  console.log(item, index,'正在勃发');
+  playerStore.currentIndex = index;
+}
+
+
+
+>>>>>>> 46f23043190840bd27140e2d3e67a25f72241196
 </script>
 
 <style lang="scss" scoped>
@@ -46,16 +75,34 @@ const playerStore = usePlayerStore();
   height: 100rpx;
   width: 100vw;
   position: fixed;
-  bottom: 100rpx;
+  bottom: 90rpx;
   z-index: 6;
   display: flex;
   padding: 0 20rpx;
   box-sizing: border-box;
   align-self: center;
+  display: flex;
+  align-items: center;
+  line-height: 90rpx;
+  border-top: 4rpx solid #eee;
+  border-bottom: 4rpx solid #eee;
+}
+.logo-music{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+.playImg{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
 }
 .playerInfo {
   flex: 1;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 .listIcon {
   height: 100%;
@@ -96,5 +143,6 @@ const playerStore = usePlayerStore();
   line-height: 100rpx;
   padding: 0 40rpx;
   border-bottom: 2rpx solid #eee;
+  display:flex;
 }
 </style>

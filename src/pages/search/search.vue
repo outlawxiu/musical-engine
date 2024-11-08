@@ -3,7 +3,7 @@ import { ref, watch } from "vue";
 import { searchSuggestApi, searchApi } from "../../services/index";
 import { useCounterStore } from "../../store/searchHistory";
 const searchStore = useCounterStore();
-console.log(searchStore.SearchHistoryList);
+// console.log(searchStore.SearchHistoryList);
 const searchList = ref([]);
 const keywords = ref("");
 const type = ref(1);
