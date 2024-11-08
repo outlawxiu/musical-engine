@@ -40,7 +40,9 @@ watch(curId, (newValue, oldValue) => {
   singer.value = musicList.value[newValue].al.name
 })
 
-
+innerAudioContext.onPlay(() => {
+  show.value = true
+})
 
 
 const next = () => {
