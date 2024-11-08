@@ -17,12 +17,12 @@ onLoad((option) => {
 })
 const innerAudioContext = uni.createInnerAudioContext();
 
-const playMusic = (item:any) => {
+const playMusic = (item: any) => {
     console.log(item.al.id, 'item.id');
     playMusicApi(item.id).then(res => {
         console.log(res.data.data[0].url, 'playMusicApi');
         playerStore.playList.unshift({
-            poster : item.al.picUrl,
+            poster: item.al.picUrl,
             id: item.al.id,
             name: item.name,
             url: res.data.data[0].url,
@@ -32,7 +32,7 @@ const playMusic = (item:any) => {
 
         console.log(playerStore.playList, 'playerStore.playList');
     })
-    
+
     console.log(item, 'item');
 }
 
@@ -59,13 +59,13 @@ const playMusic = (item:any) => {
             <text class="id">
                 {{ idx + 1 }}
             </text>
-                <view class="song" style="display: flex; flex-direction: column;" @click="playMusic(item)">
-                    <text class="name">{{ item.name }}</text>
-                    <text class="artists">{{ item.ar.map(item => item.name).join('、') }}</text>
-                </view>
-
+            <view class="song" style="display: flex; flex-direction: column;" @click="playMusic(item)">
+                <text class="name">{{ item.name }}</text>
+                <text class="artists">{{ item.ar.map(item => item.name).join('、') }}</text>
             </view>
+
         </view>
+    </view>
 </template>
 
 <style lang="scss" scoped>
