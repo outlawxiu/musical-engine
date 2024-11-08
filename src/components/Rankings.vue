@@ -13,7 +13,7 @@ const formatPlayCount = (playCount: number) => {
 }
 topListApi().then(res => {
     topList.value = res.data.list
-    console.log(res.data.list)
+    // console.log(res.data.list)
 })
 const goTopList = () => {
     uni.navigateTo({
