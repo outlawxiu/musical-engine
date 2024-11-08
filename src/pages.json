@@ -12,6 +12,12 @@
 				"navigationBarTitleText": "网易云首页",
 				"navigationBarTextStyle": "white"
 			}
+		},{
+			"path": "pages/playmusic/playmusic",
+			"style": {
+				"navigationBarTitleText": "网易云播放页",
+				"navigationBarTextStyle": "white"
+			}
 		},
 		{
 			"path": "pages/find/find",

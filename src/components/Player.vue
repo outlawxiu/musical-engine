@@ -45,8 +45,8 @@ const changePlayerStoreStatus = () => {
 }
 // 跳到动态页面
 const goToDynamic = () =>{
-  uni.switchTab({
-    url: '/pages/find/find'
+  uni.navigateTo({
+    url: '/pages/playmusic/playmusic'
   });
 }
 
@@ -75,6 +75,7 @@ const changePlayerMusic = (item) =>{
   align-items: center;
   line-height: 90rpx;
   border-top: 4rpx solid #eee;
+  border-bottom: 4rpx solid #eee;
 }
 .logo-music{
   width: 60rpx;
