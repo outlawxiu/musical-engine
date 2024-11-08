@@ -3,6 +3,10 @@ import { ref } from 'vue';
 import type { playlist } from '../../services/type';
 import { playlistDetailApi, playMusicApi } from '../../services/index';
 
+import { usePlayerStore } from "../../store/musicPlayer";
+const playerStore = usePlayerStore();
+
+
 import { onLoad } from '@dcloudio/uni-app';
 const recommendListDetail = ref<playlist>({});
 
@@ -14,22 +18,24 @@ onLoad((option) => {
 })
 const innerAudioContext = uni.createInnerAudioContext();
 
-const playMusic = (item:string) => {
-    playMusicApi(item).then(res => {
-        console.log(res.data.data[0].url);
-        innerAudioContext.autoplay = true;
-        innerAudioContext.src = res.data.data[0].url;
+const playMusic = (item:any) => {
+    console.log(item.al.id, 'item.id');
+    playMusicApi(item.id).then(res => {
+        console.log(res.data.data[0].url, 'playMusicApi');
+        playerStore.playList.unshift({
+            poster : item.al.picUrl,
+            id: item.al.id,
+            name: item.name,
+            url: res.data.data[0].url,
+            poster: item.al.picUrl
+        })
+
+
+        console.log(playerStore.playList, 'playerStore.playList');
     })
+    
+    console.log(item, 'item');
 }
-
-innerAudioContext.onPlay(() => {
-    console.log('开始播放');
-});
-innerAudioContext.onError((res) => {
-    console.log(res.errMsg);
-    console.log(res.errCode);
-});
-
 
 
 </script>
@@ -54,7 +60,7 @@ innerAudioContext.onError((res) => {
             <text class="id">
                 {{ idx + 1 }}
             </text>
-                <view class="song" style="display: flex; flex-direction: column;" @click="playMusic(item.id)">
+                <view class="song" style="display: flex; flex-direction: column;" @click="playMusic(item)">
                     <text class="name">{{ item.name }}</text>
                     <text class="artists">{{ item.ar.map(item => item.name).join('、') }}</text>
                 </view>
