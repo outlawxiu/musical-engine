@@ -18,8 +18,8 @@ import { useUserInfoStore } from "../../store/userInfo";
 const user = useUserInfoStore();
 const userInfo = ref(
   uni.getStorageSync("userInfo")
-    ? JSON.parse(uni.getStorageSync("detailInfo"))
-    : user.detailInfo
+    ?JSON.parse(uni.getStorageSync("detailInfo"))
+    :{}
 );
 console.log(userInfo.value);
 
