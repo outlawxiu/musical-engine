@@ -7,7 +7,8 @@ import type {
   toplistRes,
   playlistDetailRes,
   playMusicRes,
-  dynamicRes,
+  dynamicRecommendRes,
+  followRes,
 } from "./type";
 
 // 获取轮播图数据
@@ -69,10 +70,16 @@ export const searchApi = (keywords: string) => {
   });
 };
 
-// 动态页面数据接口
-export const dynamicApi = () => {
-  return request<dynamicRes>({
+// 动态页面 推荐的数据接口
+export const dynamicRecommendApi = () => {
+  return request<dynamicRecommendRes>({
     url: "/topic/detail/event/hot?actid=111551188",
+  });
+};
+// 动态页面 关注的数据接口
+export const dynamicFollowApi = () => {
+  return request<followRes>({
+    url: "/user/followeds?uid=416608258",
   });
 };
 

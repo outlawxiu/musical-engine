@@ -1,20 +1,24 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
-import { dynamicApi } from '../../services/index';
-import type { dynamicItem } from '../../services/type';
+import { dynamicRecommendApi, dynamicFollowApi } from '../../services/index';
+import type { dynamicRecommendItem, followItem } from '../../services/type';
 import Follow from './components/follow.vue';
 import Recommend from './components/recommend.vue';
 
-const dynamicList = ref<dynamicItem[]>([])
+const recommendList = ref<dynamicRecommendItem[]>([])
+const followList = ref<followItem[]>([])
 const navTabs = ref<string[]>(['关注', '推荐'])
 const navTabIndex = ref<number>(1)
 
-const getDynamicList = () =>{
-    dynamicApi().then(res =>{
-        dynamicList.value = res.data.events
+const getrecommendList = () =>{
+    dynamicRecommendApi().then(res =>{
+        recommendList.value = res.data.events
+    })
+    dynamicFollowApi().then(res =>{
+        followList.value = res.data.followeds
     })
 }
-getDynamicList()
+getrecommendList()
 
 </script>
 
@@ -29,8 +33,8 @@ getDynamicList()
             </view>
             <img src="../../static/music_1.png" alt="" class="img2">
         </view>
-        <Follow v-if="navTabIndex === 0"></Follow>
-        <Recommend v-else v-model="dynamicList"></Recommend>
+        <Follow v-if="navTabIndex === 0" v-model="followList"></Follow>
+        <Recommend v-else v-model="recommendList"></Recommend>
     </view>
 </template>
 
