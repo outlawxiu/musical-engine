@@ -17,9 +17,9 @@ import Player from "../../components/Player.vue";
 import { useUserInfoStore } from "../../store/userInfo";
 const user = useUserInfoStore();
 const userInfo = ref(
-  uni.getStorageSync("userInfo")
+  uni.getStorageSync("detailInfo")
     ?JSON.parse(uni.getStorageSync("detailInfo"))
-    :{}
+    :user.detailInfo
 );
 console.log(userInfo.value);
 
@@ -71,6 +71,8 @@ const toLogin = () => {
 
 .bg {
   position: absolute;
+  width: 100%;
+  height: 360px;
   top: 0;
   left: 0;
   right: 0;

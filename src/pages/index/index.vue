@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { getBannerApi, recommendPlaylistApi } from '../../services/index';
 import type { bannersItem, recommendPlaylistItem } from '../../services/type';
-
+import Player from '@/components/Player.vue';
 import DailyRecommend from '../../components/DailyRecommend.vue'
 import Rankings from '../../components/Rankings.vue'
 
@@ -81,6 +81,7 @@ const toSearch = () => {
       </view>
     </view>
     <Rankings  />
+    <Player />
   </view>
 </template>
 <style lang="scss" scoped>
