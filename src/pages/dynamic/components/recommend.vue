@@ -10,7 +10,7 @@ const dynamicList = defineModel<dynamicItem[]>();
         <view v-for="(item, index) in dynamicList" :key="index" class="item">
 
             <view>
-                <image :src="item.user.avatarUrl" class="pic" />
+                <image mode="widthFix" :src="item.user.avatarUrl" class="pic" />
                 <view class="title">{{ item.user.nickname }}</view>
             </view>
             <view class="content">
