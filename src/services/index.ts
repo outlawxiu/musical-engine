@@ -154,6 +154,18 @@ export const getAccountInfo = (cookie: string) => {
       const detailInfo =  { account , profile };
       userInfoStore.detailInfo = detailInfo
       uni.setStorageSync('detailInfo', JSON.stringify(detailInfo));
+      uni.request({
+        url: "/api/user/detail",
+        data: {
+          uid : profile.userId
+        },
+        success: (res) => {
+          console.log(res);
+        },
+        fail: (err) => {
+          console.log(err);
+        }
+      });
     },
     fail: (err) => {
       console.log(err);

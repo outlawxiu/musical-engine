@@ -1,9 +1,13 @@
 <template>
   <div class="whole">
+    <img class="bg" :src="userInfo.profile?.backgroundUrl" />
     <img :src="userInfo.profile?.avatarUrl" class="avatar" />
-    <view @click="toLogin">立即登录></view>
+    <view class="toLogin" @click="toLogin">立即登录></view>
+    <text class="nickname">{{userInfo.profile?.nickname}}</text>
+    <text class="signature">{{userInfo.profile?.signature}}</text>
+    <view class="detail">
+    </view>
   </div>
-  <Player></Player>
 </template>
 
 <script setup lang="ts">
@@ -12,7 +16,11 @@ import { getAccountInfo } from "../../services/index";
 import Player from "../../components/Player.vue";
 import { useUserInfoStore } from "../../store/userInfo";
 const user = useUserInfoStore();
-const userInfo = ref(uni.getStorageSync("userInfo") ? JSON.parse(uni.getStorageSync("detailInfo")) : user.detailInfo);
+const userInfo = ref(
+  uni.getStorageSync("userInfo")
+    ? JSON.parse(uni.getStorageSync("detailInfo"))
+    : user.detailInfo
+);
 console.log(userInfo.value);
 
 const getInfo = () => {
@@ -21,7 +29,7 @@ const getInfo = () => {
     success: function (res) {
       const cookies = JSON.parse(res.data).cookie;
       // console.log(decodeURIComponent(cookie));
-      getAccountInfo(cookies)
+      getAccountInfo(cookies);
     },
   });
 };
@@ -38,10 +46,44 @@ const toLogin = () => {
 .whole {
   height: 100vh;
   width: 100vw;
-  background: url("http://p1.music.126.net/2zSNIqTcpHL2jIvU6hG0EA==/109951162868128395.jpg") no-repeat;
-  background-size: contain;
   // #ifdef WEB
   height: calc(100vh - 188rpx);
   // #endif
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-around;
+  align-items: center;
+  padding: 0 70rpx;
+  box-sizing: border-box;
 }
+
+.avatar {
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+  margin: 50rpx 0;
+  box-shadow: 0 0 10px #999;
+}
+
+.toLogin{
+  color: white;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.nickname{
+  color: white;
+  font-size: 50rpx;
+  margin: 50rpx 0;
+}
+.signature{
+  color: white;
+  font-size: 30rpx;
+}
+
 </style>
