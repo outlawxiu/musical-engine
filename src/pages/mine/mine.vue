@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { getAccountInfo } from "../../services/index";
-import Player from "../../components/Player.vue";
+// import Player from "../../components/Player.vue";
 import { useUserInfoStore } from "../../store/userInfo";
 import { onHide, onShow } from "@dcloudio/uni-app";
 

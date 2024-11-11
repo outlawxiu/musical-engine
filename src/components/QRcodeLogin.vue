@@ -17,7 +17,7 @@ import { onMounted, onUnmounted, reactive, ref } from "vue";
 import { getKey, getQR, canLogin } from "../services/index";
 import { onShow, onHide } from "@dcloudio/uni-app";
 uni.request({
-  url: "/api/login/refresh"
+  url: "/api/login/refresh",
 });
 const timer = ref(0);
 const obj = {};
@@ -28,39 +28,44 @@ onUnmounted(() => {
   clearInterval(timer.value!);
 });
 const qrSrc = ref("");
-getKey().then((res) => {
-  const key = res.data.data.unikey;
-  getQR(res.data.data.unikey).then((res) => {
-    qrSrc.value = res.data.data.qrimg;
-    timer.value = setInterval(() => {
-      canLogin(key).then((res) => {
-        console.log(res.data);
-        if (res.data.code === 802) {
-          console.log(res);
-        }
-        if (res.data.code === 803) {
+onShow(() => {
+  getKey().then((res) => {
+    const key = res.data.data.unikey;
+    getQR(res.data.data.unikey).then((res) => {
+      qrSrc.value = res.data.data.qrimg;
+      timer.value = setInterval(() => {
+        canLogin(key).then((res) => {
           console.log(res.data);
-          obj.cookie = res.data.cookie;
-          console.log(obj);
-          uni.setStorage({
-            key: "userInfo",
-            data: JSON.stringify(obj),
-            success: function () {
-              uni.switchTab({
-                url: "/pages/index/index",
-              });
-            },
-          });
-          uni.request({
-            url: "/api/login/refresh",
-          });
-          clearInterval(timer.value!);
-        }
-        if (res.data.code === 800) {
-          clearInterval(timer.value!);
-        }
-      });
-    }, 1000);
+          if (res.data.code === 801) {
+            console.log(res.data);
+          }
+          if (res.data.code === 802) {
+            console.log(res);
+          }
+          if (res.data.code === 803) {
+            console.log(res.data);
+            obj.cookie = res.data.cookie;
+            console.log(obj);
+            uni.setStorage({
+              key: "userInfo",
+              data: JSON.stringify(obj),
+              success: function () {
+                uni.switchTab({
+                  url: "/pages/index/index",
+                });
+              },
+            });
+            uni.request({
+              url: "/api/login/refresh",
+            });
+            clearInterval(timer.value!);
+          }
+          if (res.data.code === 800) {
+            clearInterval(timer.value!);
+          }
+        });
+      }, 1000);
+    });
   });
 });
 </script>

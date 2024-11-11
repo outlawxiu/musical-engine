@@ -30,8 +30,8 @@
       </div>
     </div>
     <MusicPlayer>
-
     </MusicPlayer>
+    <audio ref="audio" :src="playerStore.playList[playerStore.currentIndex].url"></audio>
   </Teleport>
     <!-- #endif -->
 </template>
