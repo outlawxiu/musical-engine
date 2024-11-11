@@ -30,7 +30,7 @@ recommendPlaylistApi().then((res => {
 }))
 const goRecommendDetail = (id: number) => {
   uni.navigateTo({
-    url: '/pages/index/recommendlistdetail?id='+ id
+    url: '/pages/index/recommendlistdetail?id=' + id
   });
   // console.log(id)
 };
@@ -43,22 +43,13 @@ const toSearch = () => {
   <view class="content">
     <view class="nav">
       <img src="../../static/01.png" alt="" class="img1" />
-      <input
-        type="text"
-        placeholder="输入搜索内容"
-        class="search"
-        @focus="toSearch"
-      />
+      <input type="text" placeholder="输入搜索内容" class="search" @focus="toSearch" />
       <img src="../../static/music_1.png" alt="" class="img2" />
     </view>
     <swiper class="swiper">
       <swiper-item v-for="item in banners" :key="item.targetId">
         <view class="swiper-item">
-          <image
-            :src="item.imageUrl"
-            alt=""
-            style="width: 100%; height: 180px"
-          />
+          <image :src="item.imageUrl" alt="" style="width: 100%; height: 180px" />
         </view>
       </swiper-item>
     </swiper>
@@ -67,28 +58,25 @@ const toSearch = () => {
     <view class="recommend">
       <text class="title">推荐歌单&gt;</text>
       <view class="recommends">
-        <view
-          class="recommend-list"
-          v-for="items in recommendPlayList"
-          :key="items.id"
-          @click="goRecommendDetail(items.id)"
-        >
+        <view class="recommend-list" v-for="items in recommendPlayList" :key="items.id"
+          @click="goRecommendDetail(items.id)">
           <text class="plays">🎧{{ items.playCount }}</text>
           <image :src="items.coverImgUrl" alt="" />
           <view class="desc"><text class="name">{{ items.name }}</text></view>
         </view>
       </view>
     </view>
-    <Rankings  />
+    <Rankings />
     <Player />
   </view>
   <Player></Player>
 </template>
 <style lang="scss" scoped>
 .title {
-    display: block;
-    margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
+
 .nav {
   display: flex;
   justify-content: space-around;
