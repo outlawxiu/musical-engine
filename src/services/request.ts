@@ -1,4 +1,4 @@
-const BaseURL = 'https://zyxcl.xyz/music/api'
+const BaseURL = 'http://121.89.213.194:5001'
 
 // 接口请求函数的参数类型
 interface RequestParams {
