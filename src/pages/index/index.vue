@@ -69,6 +69,7 @@ const toSearch = () => {
     <Rankings />
     <Player />
   </view>
+  <Player></Player>
 </template>
 <style lang="scss" scoped>
 .title {
